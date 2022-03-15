@@ -195,25 +195,29 @@ that you can start `firefox` from command line (on macOS use `open tutorial-inte
 $ <b>firefox tutorial-interfaces.html</b>
 </pre>
 
-![foo](figures/pyang-jstree-diagram.png)
+![Pyang jstree diagram](figures/pyang-jstree-diagram.png)
 
-Produce a UML diagram of the YANG data model (this requires [PlantUML](https://plantuml.com/)
-to be installed):
+Another interesting option is to convert the YANG data model into a UML diagram:
 
 <pre>
-$ <b>pyang -f uml stove.yang > stove.uml</b>
-$ <b>plantuml stove.uml</b>
-$ <b>open img/stove.png</b>
+$ <b>pyang -f uml tutorial-interfaces.yang > tutorial-interfaces.uml</b>
 </pre>
 
-![foo](figures/stove-uml-diagram.png)
+You need to have `plantuml` installed (see 
+[pyang installation instructions](#pyang-installation-instructions)
+) to convert the produced UML text file to a graphical PNG file:
 
-```
-Convert to FORMAT.  Supported formats are: 
-identifiers,
-sample-xml-skeleton, capability, jsonxsl, depend,
-jtox, name
-```
+<pre>
+$ <b>plantuml tutorial-interfaces.uml</b>
+</pre>
+
+The PNG file can be viewed in a web browser:
+
+<pre>
+$ <b>firefox img/tutorial-interfaces.png</b>
+</pre>
+
+![Pyang uml diagram](figures/pyang-uml-diagram.png)
 
 
 # Installation instructions
@@ -304,7 +308,12 @@ $ <b>pyang --version</b>
 pyang 2.5.2
 </pre>
 
-One of the examples in the tutorial requires [PlantUML](https://plantuml.com/)
+One of the examples in the tutorial requires [PlantUML](https://plantuml.com/) to be installed:
+
+<pre>
+$ <b>sudo apt install -y plantuml<b>
+[...]
+</pre>
 
 ## Clixon installation instructions
 
