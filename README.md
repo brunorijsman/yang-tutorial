@@ -139,8 +139,8 @@ All good
 </pre>
 
 Just to see what happens if there is an error, edit the YANG file and change the word
-`organization` to its British spelling `organisation` and see what happens (don't forget to
-change it back afterwards):
+`organization` to its British spelling `organisation` 
+(don't forget to change it back afterwards):
 
 <pre>
 $ <b>pyang tutorial-interfaces.yang</b>
