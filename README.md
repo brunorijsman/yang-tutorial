@@ -219,6 +219,29 @@ $ <b>firefox img/tutorial-interfaces.png</b>
 
 ![Pyang uml diagram](figures/pyang-uml-diagram.png)
 
+## Clixon
+
+[Clixon](https://github.com/clicon/clixon) can generate a server from a YANG data model.
+
+The generated server provides multiple north-bound interfaces based on the YANG data model:
+* A command line interface (CLI).
+* A NETCONF interface.
+* A RESTCONF interface.
+
+Clixon also provides a software development kit (SDK) that allows you to develop plugins
+that implement the backend of the YANG data model, such as:
+* Retrieve the values for operational attributes from the underlying hardware when a
+  NETCONF get / RESTCONF get / CLI show operation is performed.
+* Make the values for configuration attributes take effect in the underlying hardware when a
+  NETCONF set / RESTCONF put / CLI set operation is performed.
+
+Clixon is an open source project implemented in C.
+
+To install clixon follow the 
+[clixon installation instructions](#clixon-installation-instructions)
+at the end of this tutorial.
+
+**TODO: Continue from here**
 
 # Installation instructions
 
@@ -312,13 +335,13 @@ One of the examples in the tutorial converts the YANG data model into a UML diag
 This requires [PlantUML](https://plantuml.com/) to be installed:
 
 <pre>
-$ <b>sudo apt install -y plantuml<b>
+$ <b>sudo apt install -y plantuml</b>
 [...]
 </pre>
 
 ## Clixon installation instructions
 
-TODO
+[Clixon](https://github.com/clicon/clixon) can generate a server from a YANG data model.
 
 ## Cclient installation instructions
 
