@@ -191,6 +191,9 @@ $ <b>pyang -f jstree tutorial-interfaces.yang > tutorial-interfaces.html</b>
 Use any web browser to view the produced HTML file. Here we assume that you are running Ubuntu and
 that you can start `firefox` from command line (on macOS use `open tutorial-interfaces.html`):
 
+<pre>
+$ <b>firefox tutorial-interfaces.html</b>
+</pre>
 
 ![foo](figures/pyang-jstree-diagram.png)
 
