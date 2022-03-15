@@ -10,6 +10,7 @@
         "plantuml",
         "pyang",
         "RESTCONF",
+        "Sysrepo",
         "venv"
     ]
 }

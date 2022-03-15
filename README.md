@@ -25,13 +25,17 @@ In this tutorial we will take a hands-on scenic tour through the YANG related ec
 * Use [ncclient](https://github.com/ncclient/ncclient) as a NETCONF client of the NETCONF
   interface provided by the clixon server.
 
- * Use the basic version of [Tail-f](https://www.tail-f.com/)
+* Use the basic version of [Tail-f](https://www.tail-f.com/)
    [CONFD](https://www.tail-f.com/confd-basic/) to implement a server that:
    - Implements the YANG data model.
    - Provides a command line interface (CLI).
    - Provides a NETCONF interface.
    - Initially provides a mocked backend for fake interfaces.
    - Later on provides a real backend for real interfaces on a Linux host.
+
+* TODO: Add a YumaPro basic example.
+
+* TODO: Add a Sysrepo example.
 
 ## Write a YANG data model
 
