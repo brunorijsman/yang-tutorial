@@ -1,4 +1,4 @@
-module stove {
+module tutorial-interfaces {
 
     namespace "http://remoteautonomy.com/yang-schemas/tutorial-interfaces";
     prefix ra-tutin;
@@ -41,12 +41,14 @@ module stove {
 
             leaf sent-packets {
                 type uint64;
+                config false;
                 description
                   "The number of IPv4 packets sent out over this interface";
             }
 
             leaf received-packets {
                 type uint64;
+                config false;
                 description
                   "The number of IPv4 packets received over this interface";
             }

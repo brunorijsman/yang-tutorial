@@ -52,7 +52,7 @@ example code short and easy to understand.
 Here is our data model (you can find it in this repository in the file `tutorial-interfaces.yang`):
 
 ```
-module stove {
+module tutorial-interfaces {
 
     namespace "http://remoteautonomy.com/yang-schemas/tutorial-interfaces";
     prefix ra-tutin;
@@ -95,12 +95,14 @@ module stove {
 
             leaf sent-packets {
                 type uint64;
+                config false;
                 description
                   "The number of IPv4 packets sent out over this interface";
             }
 
             leaf received-packets {
                 type uint64;
+                config false;
                 description
                   "The number of IPv4 packets received over this interface";
             }
@@ -121,41 +123,76 @@ at the end of this tutorial.
 The simplest way of using pyang is to validate the correctness of a YANG data model:
 
 <pre>
-$ <b>pyang stove.yang</b>
+$ <b>pyang tutorial-interfaces.yang</b>
 </pre>
 
-Since the data model is correct, this produces no output.
-
-Changing the `organization` statement to the British spelling `organisation` produces the following
-error message:
+The fact that we get no output means that the YANG file was correct. In addition, the program
+returns status code zero, so you can do something like this:
 
 <pre>
-$ <b>pyang stove.yang</b>
-stove.yang:7: error: unexpected keyword "organisation"
+$ <b>if pyang tutorial-interfaces.yang; then echo "All good"; else "There are errors"; fi</b>
+All good
 </pre>
 
-Produce a textual tree diagram of the YANG data model:
+Just to see what happens if there is an error, edit the YANG file and change the word
+`organization` to its British spelling `organisation` and see what happens (don't forget to
+change it back afterwards):
 
 <pre>
-$ <b>pyang -f tree stove.yang</b>
-module: stove
-  +--rw burners
-     +--rw burner* [location]
-        +--rw location                         enumeration
-        +--rw temperature-setting              int8
-        +--ro actual-temperature-in-celcius?   int16
+$ <b>pyang tutorial-interfaces.yang</b>
+tutorial-interfaces.yang:7: error: unexpected keyword "organisation"
+</pre>
+
+YANG data models tend to be very long and verbose. Pyang can produce a summary of the YANG data
+model in a tree format:
+
+<pre>
+$ <b>pyang -f tree tutorial-interfaces.yang</b>
+module: tutorial-interfaces
+  +--rw interfaces
+     +--rw interface* [name]
+        +--rw name                string
+        +--rw ipv4-address?       string
+        +--ro sent-packets?       uint64
+        +--ro received-packets?   uint64
 </pre>
 
 The command `pyang --tree-help` displays an explanation of the symbols in the tree diagram.
 
-Produce a javascript tree diagram of the YANG data model for viewing in a web browser:
+In addition to producing a tree summary, Pyang can also convert the YANG data model to many other
+formats:
 
 <pre>
-$ <b>pyang -f jstree stove.yang > stove.html</b>
-$ <b>open stove.html</b>
+$ <b>pyang --help</b>
+Usage: pyang [options] [<filename>...]
+
+Validates the YANG module in <filename> (or stdin), and all its dependencies.
+
+Options:
+  -h, --help            Show this help message and exit
+[...]
+  -f FORMAT, --format=FORMAT
+                        Convert to FORMAT.  Supported formats are: yang, yin,
+                        dsdl, omni, tree, jstree, flatten, uml, identifiers,
+                        sample-xml-skeleton, capability, jsonxsl, depend,
+                        jtox, name
+[...]
 </pre>
 
-![foo](figures/stove-html-tree-diagram.png)
+We will give just a couple of examples of interesting format conversions.
+
+Use the following command to produce an HTML file that describes the YANG data model
+(`jstree` stands for JavaScript tree):
+
+<pre>
+$ <b>pyang -f jstree tutorial-interfaces.yang > tutorial-interfaces.html</b>
+</pre>
+
+Use any web browser to view the produced HTML file. Here we assume that you are running Ubuntu and
+that you can start `firefox` from command line (on macOS use `open tutorial-interfaces.html`):
+
+
+![foo](figures/pyang-jstree-diagram.png)
 
 Produce a UML diagram of the YANG data model (this requires [PlantUML](https://plantuml.com/)
 to be installed):
@@ -264,6 +301,8 @@ $ <b>pyang --version</b>
 pyang 2.5.2
 </pre>
 
+One of the examples in the tutorial requires [PlantUML](https://plantuml.com/)
+
 ## Clixon installation instructions
 
 TODO
@@ -294,6 +333,7 @@ TODO
 
 * [The pyang GitHub repository](https://github.com/mbj4668/pyang)
 * [A pyang tutorial](https://www.ietf.org/slides/slides-edu-pyang-tutorial-01.pdf)
+* [The PlantUML home page](https://plantuml.com/)
 
 ## Clixon
 
