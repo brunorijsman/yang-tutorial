@@ -308,7 +308,8 @@ $ <b>pyang --version</b>
 pyang 2.5.2
 </pre>
 
-One of the examples in the tutorial requires [PlantUML](https://plantuml.com/) to be installed:
+One of the examples in the tutorial converts the YANG data model into a UML diagram.
+This requires [PlantUML](https://plantuml.com/) to be installed:
 
 <pre>
 $ <b>sudo apt install -y plantuml<b>
