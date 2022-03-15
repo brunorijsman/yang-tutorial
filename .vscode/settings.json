@@ -1,6 +1,11 @@
 {
     "cSpell.words": [
+        "Clixon",
+        "Ncclient",
+        "NETCONF",
+        "NETMOD",
         "organisation",
-        "pyang"
+        "pyang",
+        "RESTCONF"
     ]
 }
