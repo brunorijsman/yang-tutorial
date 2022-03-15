@@ -11,7 +11,7 @@ module stove {
        brunorijsman@remoteautonomy.com";
 
     description
-      "This is simple data model for the tutoral at https://github.com/brunorijsman/yang-tutorial.";
+        "This is simple data model for the tutorial.";
 
     revision 2022-03-12 {
         description
