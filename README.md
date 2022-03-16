@@ -225,7 +225,7 @@ $ <b>firefox img/interfaces.png</b>
 
 ![Pyang uml diagram](figures/pyang-uml-diagram.png)
 
-## Clixon
+## Clixon: introduction
 
 [Clixon](https://github.com/clicon/clixon) can generate a server from a YANG data model.
 
@@ -316,6 +316,8 @@ using the `-z` command line option (don't do this now):
 $ <b>sudo clixon_backend -f interfaces.xml -z</b>
 Mar 16 15:50:42: Killing old daemon with pid: 47277
 </pre>
+
+## Clixon: CLI configuration
 
 Start the clixon command line interface (CLI) frontend:
 
@@ -528,6 +530,16 @@ cli> <b>quit</b>
 $
 </pre>
 
+## Clixon: A fake backend plugin
+
+We will now implemented a fake backend plugin.
+It is fake in the sense that it will just swallow any configured IPv4 address without applying
+it to a real interface,
+and it will just return random values for the packet counters instead of reading the real counters
+from the real interfaces.
+Later, we will convert the fake plugin with a real plugin that configures and reads the real
+interfaces.
+But for now, we start simple and focus on the APIs provided by clixon.
 
 **TODO: Continue from here**
 
