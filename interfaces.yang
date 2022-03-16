@@ -1,0 +1,57 @@
+module interfaces {
+
+    namespace "http://remoteautonomy.com/yang-schemas/interfaces";
+    prefix intf;
+
+    organization
+      "Remote Autonomy";
+
+    contact
+      "Bruno Rijsman
+       brunorijsman@remoteautonomy.com";
+
+    description
+        "A simplistic tutorial data model for interfaces on a device.";
+
+    revision 2022-03-12 {
+        description
+          "Initial revision.";
+    }
+
+    container interfaces {
+        description
+          "Interface parameters.";
+
+        list interface {
+            key "name";
+            description
+              "The list of interfaces on the device.";
+
+            leaf name {
+                type string;
+                description
+                  "The name of the interface.";
+            }
+
+            leaf ipv4-address {
+                type string;
+                description
+                  "The IPv4 address of the interface.";
+            }
+
+            leaf sent-packets {
+                type uint64;
+                config false;
+                description
+                  "The number of IPv4 packets sent out over this interface";
+            }
+
+            leaf received-packets {
+                type uint64;
+                config false;
+                description
+                  "The number of IPv4 packets received over this interface";
+            }
+        }
+    }
+}
