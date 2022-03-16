@@ -9,7 +9,7 @@ datarootdir		= ${prefix}/share
 localstatedir   = ${prefix}/var
 libdir          = ${prefix}/lib
 
-APPNAME	        = stove
+APPNAME	        = interfaces
 
 CC				= gcc
 CFLAGS  		= -O2 -Wall -fPIC 
@@ -20,7 +20,7 @@ CPPFLAGS  		= -DHAVE_CONFIG_H -fPIC
 
 YANG_INSTALLDIR	= /usr/local/share/clixon
 
-YANGSPECS		= ../stove.yang
+YANGSPECS		= ../interfaces.yang
 
 .PHONY: all clean depend install 
 
@@ -61,4 +61,3 @@ depend:
 	$(CC) $(DEPENDFLAGS) $(INCLUDES) $(CFLAGS) -MM $(SRC) > .depend
 
 #include .depend
-

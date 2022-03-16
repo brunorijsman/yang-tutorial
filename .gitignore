@@ -1,1 +1,8 @@
-venv/**
+# Python
+venv/
+
+# Files created when the user follows tutorial instructions
+**/interfaces.html
+**/interfaces.uml
+**/img/
+
