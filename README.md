@@ -53,12 +53,14 @@ and for managing IP addresses
 are way more complex, but we are using a simplistic data model in this tutorial to keep the
 example code short and easy to understand.
 
-Here is our data model (you can find it in this repository in the file `tutorial-interfaces.yang`):
+Here is our data model (you can find it in this repository in the file `interfaces.yang`):
 
 ```
-module tutorial-interfaces {
+[TODO] @@@ Paste updated data model
+[TODO] @@@ Paste updated figures
+module interfaces {
 
-    namespace "http://remoteautonomy.com/yang-schemas/tutorial-interfaces";
+    namespace "http://remoteautonomy.com/yang-schemas/interfaces";
     prefix ra-tutin;
 
     organization
@@ -127,14 +129,14 @@ at the end of this tutorial.
 The simplest way of using pyang is to validate the correctness of a YANG data model:
 
 <pre>
-$ <b>pyang tutorial-interfaces.yang</b>
+$ <b>pyang interfaces.yang</b>
 </pre>
 
 The fact that we get no output means that the YANG file was correct. In addition, the program
 returns status code zero, so you can do something like this:
 
 <pre>
-$ <b>if pyang tutorial-interfaces.yang; then echo "All good"; else "There are errors"; fi</b>
+$ <b>if pyang interfaces.yang; then echo "All good"; else "There are errors"; fi</b>
 All good
 </pre>
 
@@ -143,16 +145,16 @@ Just to see what happens if there is an error, edit the YANG file and change the
 (don't forget to change it back afterwards):
 
 <pre>
-$ <b>pyang tutorial-interfaces.yang</b>
-tutorial-interfaces.yang:7: error: unexpected keyword "organisation"
+$ <b>pyang interfaces.yang</b>
+interfaces.yang:7: error: unexpected keyword "organisation"
 </pre>
 
 YANG data models tend to be very long and verbose. Pyang can produce a summary of the YANG data
 model in a tree format:
 
 <pre>
-$ <b>pyang -f tree tutorial-interfaces.yang</b>
-module: tutorial-interfaces
+$ <b>pyang -f tree interfaces.yang</b>
+module: interfaces
   +--rw interfaces
      +--rw interface* [name]
         +--rw name                string
@@ -189,14 +191,14 @@ Use the following command to produce an HTML file that describes the YANG data m
 (`jstree` stands for JavaScript tree):
 
 <pre>
-$ <b>pyang -f jstree tutorial-interfaces.yang > tutorial-interfaces.html</b>
+$ <b>pyang -f jstree interfaces.yang > interfaces.html</b>
 </pre>
 
 Use any web browser to view the produced HTML file. Here we assume that you are running Ubuntu and
-that you can start `firefox` from command line (on macOS use `open tutorial-interfaces.html`):
+that you can start `firefox` from command line (on macOS use `open interfaces.html`):
 
 <pre>
-$ <b>firefox tutorial-interfaces.html</b>
+$ <b>firefox interfaces.html</b>
 </pre>
 
 ![Pyang jstree diagram](figures/pyang-jstree-diagram.png)
@@ -204,7 +206,7 @@ $ <b>firefox tutorial-interfaces.html</b>
 Another interesting option is to convert the YANG data model into a UML diagram:
 
 <pre>
-$ <b>pyang -f uml tutorial-interfaces.yang > tutorial-interfaces.uml</b>
+$ <b>pyang -f uml interfaces.yang > interfaces.uml</b>
 </pre>
 
 You need to have `plantuml` installed (see 
@@ -212,13 +214,13 @@ You need to have `plantuml` installed (see
 ) to convert the produced UML text file to a graphical PNG file:
 
 <pre>
-$ <b>plantuml tutorial-interfaces.uml</b>
+$ <b>plantuml interfaces.uml</b>
 </pre>
 
 The PNG file can be viewed in a web browser:
 
 <pre>
-$ <b>firefox img/tutorial-interfaces.png</b>
+$ <b>firefox img/interfaces.png</b>
 </pre>
 
 ![Pyang uml diagram](figures/pyang-uml-diagram.png)
@@ -244,6 +246,9 @@ Clixon is an open source project implemented in C.
 To install clixon follow the 
 [clixon installation instructions](#clixon-installation-instructions)
 at the end of this tutorial.
+
+
+
 
 **TODO: Continue from here**
 
