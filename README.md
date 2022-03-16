@@ -521,6 +521,13 @@ cli> <b>show configuration json</b>
 }
 ```
 
+Use the `quit` command to exit the CLI and return to the Linux shell:
+
+<pre>
+cli> <b>quit</b>
+$
+</pre>
+
 
 **TODO: Continue from here**
 
