@@ -34,7 +34,10 @@ module interfaces {
             }
 
             leaf ipv4-address {
-                type string;
+                type string {
+                    /* TODO: This evidently won't accept "1.2.3.4" upon commit, but will accept "1.2.3.44" */
+                    pattern '([0-9]+\.){3}[0-9]+';
+                }
                 description
                   "The IPv4 address of the interface.";
             }

@@ -6,6 +6,7 @@
     <CLICON_YANG_MODULE_MAIN>interfaces</CLICON_YANG_MODULE_MAIN>
     <CLICON_CLI_MODE>interfaces</CLICON_CLI_MODE>
     <CLICON_CLISPEC_DIR>/usr/local/lib/interfaces/clispec</CLICON_CLISPEC_DIR>
+    <CLICON_BACKEND_DIR>/usr/local/lib/interfaces/backend</CLICON_BACKEND_DIR>
     <CLICON_SOCK>/usr/local/var/interfaces.sock</CLICON_SOCK>
     <CLICON_BACKEND_PIDFILE>/usr/local/var/interfaces.pidfile</CLICON_BACKEND_PIDFILE>
     <CLICON_BACKEND_RESTCONF_PROCESS>true</CLICON_BACKEND_RESTCONF_PROCESS>

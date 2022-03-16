@@ -1,12 +1,12 @@
 CLICON_MODE="interfaces";
 CLICON_PROMPT="cli> ";
 
-mode @datamodel, cli_auto_edit("datamodel");
-up, cli_auto_up("datamodel");
-top, cli_auto_top("datamodel");
-set @datamodel, cli_auto_set();
-merge @datamodel, cli_auto_merge();
-create @datamodel, cli_auto_create();
+mode("Enter a configuration mode") @datamodel, cli_auto_edit("datamodel");
+up("Move one level up in the configuration"), cli_auto_up("datamodel");
+top("Move to the top level in the configuration"), cli_auto_top("datamodel");
+set("Set a configuration item value") @datamodel, cli_auto_set();
+merge("Merge configuration items") @datamodel, cli_auto_merge();
+create("Create a configuration item") @datamodel, cli_auto_create();
 delete("Delete a configuration item") {
     @datamodel, cli_auto_del(); 
     all("Delete whole candidate configuration"), delete_all("candidate");

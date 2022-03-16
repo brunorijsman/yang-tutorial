@@ -22,14 +22,21 @@ YANG_INSTALLDIR	= /usr/local/share/clixon
 
 YANGSPECS		= ../interfaces.yang
 
-.PHONY: all clean depend install 
-
-all:
+PLUGIN          = $(APPNAME)_backend_plugin.so
+PLUGIN_SRC      = $(APPNAME)_backend_plugin.c
+PLUGIN_OBJ      = $(PLUGIN_SRC:%.c=%.o)
 
 .SUFFIXES: .c .o
 
 .c.o:
 	$(CC) $(INCLUDES) $(CPPFLAGS) $(CFLAGS) -c $<
+
+.PHONY: all clean depend install 
+
+all: $(PLUGIN)
+
+$(PLUGIN): $(PLUGIN_OBJ)
+	$(CC) -Wall -shared $(LDFLAGS) -o $@ -lc $< -lclixon -lclixon_backend
 
 CLISPECS = $(APPNAME)_cli.cli
 
@@ -43,12 +50,14 @@ install: $(CLISPECS) $(APPNAME).xml
 	install -m 0644 $(APPNAME).xml $(DESTDIR)$(sysconfdir)
 	install -d -m 0755 $(DESTDIR)$(libdir)/$(APPNAME)
 	install -d -m 0755 $(DESTDIR)$(libdir)/$(APPNAME)/clispec
+	install -d -m 0755 $(DESTDIR)$(libdir)/$(APPNAME)/backend
 	install -m 0644 $(CLISPECS) $(DESTDIR)$(libdir)/$(APPNAME)/clispec
 	install -d -m 0755 $(DESTDIR)$(localstatedir)
 	install -d -m 0755 $(DESTDIR)$(localstatedir)/$(APPNAME)
 	install -m 0644 startup_db $(DESTDIR)$(localstatedir)/$(APPNAME)/
 	install -d -m 0755 $(DESTDIR)$(YANG_INSTALLDIR)
 	install -m 0644 $(YANGSPECS) $(DESTDIR)$(YANG_INSTALLDIR)
+	install -m 0644 $(INSTALLFLAGS) $(PLUGIN) $(DESTDIR)$(libdir)/$(APPNAME)/backend
 
 uninstall: 
 	rm -rf $(DESTDIR)$(sysconfdir)/$(APPNAME).xml
