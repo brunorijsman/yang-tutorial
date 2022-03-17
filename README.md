@@ -225,7 +225,7 @@ $ <b>firefox img/interfaces.png</b>
 
 ![Pyang uml diagram](figures/pyang-uml-diagram.png)
 
-## Clixon: introduction
+## Clixon: Introduction
 
 [Clixon](https://github.com/clicon/clixon) can generate a server from a YANG data model.
 
@@ -241,9 +241,21 @@ that implement the backend of the YANG data model, such as:
 * Make the values for configuration attributes take effect in the underlying hardware when a
   NETCONF set / RESTCONF put / CLI set operation is performed.
 
-Clixon is an open source project implemented in C.
+The following figure shows the clixon architecture:
 
-To install clixon follow the
+![Clixon architecture](figures/clixon-architecture.jpg)
+
+Clixon is an open source project implemented in C. 
+You can think of Clixon as being the open source equivalent of the commercial
+[CONFD](https://www.tail-f.com/management-agent/) product from [Tail-F](https://www.tail-f.com/)
+or the YumaPro product suite from [YumaWorks](https://www.yumaworks.com/).
+
+## Clixon: Building the backend server
+
+We will now explain how to build the clixon backend server for the `interfaces.yang` data model
+that we introduced earlier in this tutorial.
+
+First install clixon following the
 [clixon installation instructions](#clixon-installation-instructions)
 at the end of this tutorial.
 
@@ -252,10 +264,6 @@ Change the current directory to the `clixon` directory in this repository:
 <pre>
 $ <b>cd ~/yang-tutorial/clixon</b>
 </pre>
-
-The following figure shows the clixon architecture:
-
-![Clixon architecture](figures/clixon-architecture.jpg)
 
 This directory contains the following:
 
@@ -543,9 +551,13 @@ But for now, we start simple and focus on the APIs provided by clixon.
 
 **TODO: Continue from here**
 
+Start the `clixon_backend` daemon. I like to run it with verbose logging to ease debugging.
+Note that there is *no* ampersand (`&`) needed at the end of this command.
+
 <pre>
 $ <b>sudo clixon_backend -f interfaces.xml -lf/var/log/clixon.log -D 1</b>
 </pre>
+
 
 # Installation instructions
 
@@ -645,11 +657,76 @@ $ <b>sudo apt install -y plantuml</b>
 
 ## Clixon installation instructions
 
-[Clixon](https://github.com/clicon/clixon) can generate a server from a YANG data model.
+[Clixon](https://github.com/clicon/clixon) is an open source project written in C that offers a
+YANG-based configuration data store with plugin APIs for configuration consuming applications and 
+with CLI, NETCONF, and RESTCONF frontend interfaces.
 
-## Cclient installation instructions
+TODO: Install dependencies. Use a fresh Ubuntu virtual machine to get the exact steps right.
 
-TODO
+Clone the `clixon` GitHub repository:
+
+<pre>
+$ <b>cd ~</b>
+
+$ <b>git clone https://github.com/clicon/clixon.git</b>
+Cloning into 'clixon'...
+[...]
+</pre>
+
+Build `clixon`:
+
+<pre>
+$ <b>cd clixon</b>
+
+$ <b>./configure</b>
+debug is no
+checking for gcc... gcc
+[...]
+config.status: creating include/clixon_config.h
+config.status: creating lib/clixon/clixon.h
+
+$ <b>make</b>
+(cd include && make  all)
+make[1]: Entering directory '/home/parallels/test/clixon/include'
+[...]
+/usr/bin/id
+After 'make install' as euid root, build example app and test utils: 'make example'
+
+$ <b>sudo make install</b>
+/usr/bin/id
+for i in include lib  apps etc yang  doc; \
+[...]
+To install example app and test utils: make install-example
+make[1]: Leaving directory '/home/parallels/test/clixon'
+</pre>
+
+We will explain how to start the clixon backend server and the clixon frontend servers for the
+CLI, for NETCONF, and for RESTCONF in the main body of the tutorial.
+
+## MG-Soft NETCONF browser instructions
+
+[MG-Soft](https://www.mg-soft.si/) is a company that offers a suite of network management related
+products.
+One of their products, the [NETCONF browser](https://www.mg-soft.si/mgNetConfBrowser.html) is a
+NETCONF client that can connect to a NETCONF server and that offers a graphical user interface
+for exploring and editing the data store in the NETCONF server.
+
+You can download the NETCONF browser from the 
+[download page](https://www.mg-soft.si/download.html?product=netconfbrowser)
+on the MG-Soft website.
+
+MG-Soft offers a version of the NETCONF browser that runs natively on Linux, but I find it more
+convenient to run the macOS version of the NETCONF browser and connect to the NETCONF server that
+runs inside my Ubuntu virtual machine over the bridge network.
+
+To do anything interesting with the NETCONF browser, you will need to apply a license key.
+You can [purchase a license online](https://www.mg-soft.si/mgNetConfBrowser-ordering.html)
+or you can [request a 30-day evaluation license online](https://www.mg-soft.si/evalKeyReq.html).
+Note: I am not affiliated with MG-Soft in any way and I don't get any commission.
+
+## Ncclient installation instructions
+
+[Ncclient](https://github.com/ncclient/ncclient) (short for NETCONF Client) @@@
 
 ##
 
