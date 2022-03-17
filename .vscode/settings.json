@@ -9,6 +9,7 @@
         "NETMOD",
         "organisation",
         "plantuml",
+        "psutil",
         "pyang",
         "RESTCONF",
         "Sysrepo",

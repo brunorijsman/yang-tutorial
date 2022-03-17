@@ -48,5 +48,23 @@ $ <b>ls -1</b>
 [TODO] output
 </pre>
 
+These example scripts require that the following environment variables are set. 
+
+<pre>
+$ export NETCONF_SERVER_ADDRESS="127.0.0.1"
+$ export NETCONF_SERVER_PASSWORD="topsecret"
+</pre>
+
+The IP address of the NETCONF server is the loopback address (127.0.0.1) if you run ncclient on 
+the same computer as the NETCONF server. However, it may be a different IP address if you run
+ncclient on a different computer or virtual machine than the NETCONF server.
+
+The password is the password of the user account that you are using to SSH connect to the NETCONF
+server.
+
+TODO: Also cover certificate-based SSH authentication?
+
 ## Get the running configuration
+
+
 
