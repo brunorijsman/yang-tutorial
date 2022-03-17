@@ -1,6 +1,6 @@
 # Clixon: an open source NETCONF server
 
-## Clixon: Introduction
+## Introduction
 
 [Clixon](https://github.com/clicon/clixon) can generate a server from a YANG data model.
 
@@ -25,7 +25,7 @@ You can think of Clixon as being the open source equivalent of the commercial
 [CONFD](https://www.tail-f.com/management-agent/) product from [Tail-F](https://www.tail-f.com/)
 or the YumaPro product suite from [YumaWorks](https://www.yumaworks.com/).
 
-## Clixon: Installation instructions
+## Install clixon
 
 [Clixon](https://github.com/clicon/clixon) is an open source project written in C that offers a
 YANG-based configuration data store with plugin APIs for configuration consuming applications and 
@@ -73,7 +73,7 @@ make[1]: Leaving directory '/home/parallels/test/clixon'
 We will explain how to start the clixon backend server and the clixon frontend servers for the
 CLI, for NETCONF, and for RESTCONF in the main body of the tutorial.
 
-## Clixon: Building the backend server
+## Build the clixon backend server
 
 We will now explain how to build the clixon backend server for the `interfaces.yang` data model
 that we introduced earlier in this tutorial.
@@ -126,6 +126,8 @@ install -d -m 0755 /usr/local/share/clixon
 install -m 0644 ../interfaces.yang /usr/local/share/clixon
 </pre>
 
+## Start the clixon backend server daemon
+
 Start the clixon backend daemon:
 
 <pre>
@@ -148,7 +150,7 @@ $ <b>sudo clixon_backend -f interfaces.xml -z</b>
 Mar 16 15:50:42: Killing old daemon with pid: 47277
 </pre>
 
-## Clixon: CLI configuration
+## Start the clixon CLI frontend
 
 Start the clixon command line interface (CLI) frontend:
 
@@ -156,6 +158,8 @@ Start the clixon command line interface (CLI) frontend:
 $ <b>clixon_cli -f interfaces.xml</b>
 cli>
 </pre>
+
+## Use the clixon CLI
 
 The `cli>` prompt indicates that we are now in the clixon CLI that was automatically generated from
 `interfaces.yang` data model in combination with the `interfaces_cli.cli` configuration file.
@@ -361,7 +365,7 @@ cli> <b>quit</b>
 $
 </pre>
 
-## Clixon: A fake backend plugin
+## Implement a clixon backend plugin
 
 We will now implemented a fake backend plugin.
 It is fake in the sense that it will just swallow any configured IPv4 address without applying

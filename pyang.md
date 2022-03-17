@@ -1,11 +1,11 @@
 # Pyang: validating and converting YANG data models
 
-## Pyang: Introduction
+## Introduction
 
 [Pyang](https://github.com/mbj4668/pyang) is an open source YANG validator, transformer, and
 code generator, written in Python.
 
-## Pyang: Installation
+## Install Pyang
 
 If you haven't already done so, follow the instructions for
 [cloning and setting up this repository](#cloning-and-setting-up-this-repository)

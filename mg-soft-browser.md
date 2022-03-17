@@ -8,7 +8,7 @@ One of their products, the [NETCONF browser](https://www.mg-soft.si/mgNetConfBro
 NETCONF client that can connect to a NETCONF server and that offers a graphical user interface
 for exploring and editing the data store in the NETCONF server.
 
-## Installation instructions
+## Download and install the MG-Soft NETCONF browser
 
 You can download the NETCONF browser from the 
 [download page](https://www.mg-soft.si/download.html?product=netconfbrowser)
@@ -23,7 +23,7 @@ You can [purchase a license online](https://www.mg-soft.si/mgNetConfBrowser-orde
 or you can [request a 30-day evaluation license online](https://www.mg-soft.si/evalKeyReq.html).
 Note: I am not affiliated with MG-Soft in any way and I don't get any commission.
 
-## Starting the clixon NETCONF server
+## Start the clixon NETCONF server
 
 The MG-Soft NETCONF browser is a NETCONF client, so we need a NETCONF server to be running.
 In this chapter we will use clixon as the NETCONF server.
