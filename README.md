@@ -12,6 +12,16 @@ Table of contents:
 
 [Clixon: an open source NETCONF server](clixon.md)
 
+[MG-Soft NETCONF browser](mg-soft-browser.md)
+
+[Ncclient: an open source Python NETCONF client module](ncclient.md)
+
+[CONFD from Cisco Tail-F: a commercial NETCONF server](confd.md)
+
+[YumaPro from YumaWorks: another commercial NETCONF server](yumapro.md)
+
+[YANG Suite from Cisco: an open source suite of YANG tools, including a NETCONF client](yang-suite.md)
+
 [Installation instructions](installation.md)
 
 [References](references.md)
