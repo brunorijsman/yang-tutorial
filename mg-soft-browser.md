@@ -1,4 +1,4 @@
-# The MG-Soft NETCONF browser
+# NETCONF browser from MG-Soft: a commercial NETCONF client with a graphical user interface
 
 ## Introduction
 
