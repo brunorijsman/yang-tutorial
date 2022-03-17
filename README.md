@@ -6,6 +6,8 @@ Table of contents:
 
 [Introduction](introduction.md)
 
+[Setting up the environment for this tutorial](tutorial-install.md)
+
 [An example YANG data model](example-yang-data-model.md)
 
 [Pyang: validating and converting YANG data models](pyang.md)

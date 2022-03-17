@@ -1,11 +1,51 @@
 # Pyang: validating and converting YANG data models
 
+## Pyang: Introduction
+
 [Pyang](https://github.com/mbj4668/pyang) is an open source YANG validator, transformer, and
 code generator, written in Python.
 
-To install pyang follow the
-[pyang installation instructions](#pyang-installation-instructions)
-at the end of this tutorial.
+## Pyang: Installation
+
+If you haven't already done so, follow the instructions for
+[cloning and setting up this repository](#cloning-and-setting-up-this-repository)
+and the instructions for
+[setting up a python virtual environment](#setting-up-a-python-virtual-environment).
+
+If you already did these installation steps previously, don't forget to reactivate your Python
+virtual environment if it isn't already active:
+
+<pre>
+$ <b>cd ~/yang-tutorial</b>
+$ <b>source venv/bin/activate</b>
+(env) $
+</pre>
+
+If you followed the above installation instructions, the `pyang` Python package was already
+installed as part of installing the Python dependencies.
+
+If for some reason you want to install `pyang` separately, use the following command:
+
+<pre>
+$ <b>pip install pyang</b>
+</pre>
+
+Verify that `pyang` is properly installed:
+
+<pre>
+$ <b>pyang --version</b>
+pyang 2.5.2
+</pre>
+
+One of the examples in the tutorial converts the YANG data model into a UML diagram.
+This requires [PlantUML](https://plantuml.com/) to be installed:
+
+<pre>
+$ <b>sudo apt install -y plantuml</b>
+[...]
+</pre>
+
+## Pyang: Validating a YANG data model
 
 The simplest way of using pyang is to validate the correctness of a YANG data model:
 
@@ -29,6 +69,8 @@ Just to see what happens if there is an error, edit the YANG file and change the
 $ <b>pyang interfaces.yang</b>
 interfaces.yang:7: error: unexpected keyword "organisation"
 </pre>
+
+## Pyang: Converting a YANG data model
 
 YANG data models tend to be very long and verbose. Pyang can produce a summary of the YANG data
 model in a tree format:

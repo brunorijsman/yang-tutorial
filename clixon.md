@@ -25,6 +25,54 @@ You can think of Clixon as being the open source equivalent of the commercial
 [CONFD](https://www.tail-f.com/management-agent/) product from [Tail-F](https://www.tail-f.com/)
 or the YumaPro product suite from [YumaWorks](https://www.yumaworks.com/).
 
+## Clixon: Installation instructions
+
+[Clixon](https://github.com/clicon/clixon) is an open source project written in C that offers a
+YANG-based configuration data store with plugin APIs for configuration consuming applications and 
+with CLI, NETCONF, and RESTCONF frontend interfaces.
+
+TODO: Install dependencies. Use a fresh Ubuntu virtual machine to get the exact steps right.
+
+Clone the `clixon` GitHub repository:
+
+<pre>
+$ <b>cd ~</b>
+
+$ <b>git clone https://github.com/clicon/clixon.git</b>
+Cloning into 'clixon'...
+[...]
+</pre>
+
+Build `clixon`:
+
+<pre>
+$ <b>cd clixon</b>
+
+$ <b>./configure</b>
+debug is no
+checking for gcc... gcc
+[...]
+config.status: creating include/clixon_config.h
+config.status: creating lib/clixon/clixon.h
+
+$ <b>make</b>
+(cd include && make  all)
+make[1]: Entering directory '/home/parallels/test/clixon/include'
+[...]
+/usr/bin/id
+After 'make install' as euid root, build example app and test utils: 'make example'
+
+$ <b>sudo make install</b>
+/usr/bin/id
+for i in include lib  apps etc yang  doc; \
+[...]
+To install example app and test utils: make install-example
+make[1]: Leaving directory '/home/parallels/test/clixon'
+</pre>
+
+We will explain how to start the clixon backend server and the clixon frontend servers for the
+CLI, for NETCONF, and for RESTCONF in the main body of the tutorial.
+
 ## Clixon: Building the backend server
 
 We will now explain how to build the clixon backend server for the `interfaces.yang` data model
