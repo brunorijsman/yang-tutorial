@@ -14,7 +14,7 @@ Table of contents:
 
 [Clixon: an open source NETCONF server](clixon.md)
 
-[MG-Soft NETCONF browser](mg-soft-browser.md)
+[NETCONF browser from MG-Soft: a commercial NETCONF client with a graphical user interface](mg-soft-browser.md)
 
 [Ncclient: an open source Python NETCONF client module](ncclient.md)
 
