@@ -543,6 +543,10 @@ But for now, we start simple and focus on the APIs provided by clixon.
 
 **TODO: Continue from here**
 
+<pre>
+$ <b>sudo clixon_backend -f interfaces.xml -lf/var/log/clixon.log -D 1</b>
+</pre>
+
 # Installation instructions
 
 All of the installation instructions below are for Ubuntu 12.04.
@@ -674,11 +678,14 @@ TODO
 ## Clixon
 
 * [The clixon GitHub repository](https://github.com/clicon/clixon)
+* [The clixon examples GitHub repository](https://github.com/clicon/clixon-examples)
 * [Clixon documentation](https://clixon-docs.readthedocs.io/en/latest/)
 
 ## Ncclient
 
 ## MG-Soft NETCONF browser
+ * [The MG-Soft company homepage](https://www.mg-soft.si/)
+ * [The MG-Soft NETCONF browser product page](https://www.mg-soft.si/mgNetConfBrowser.html)
 
 ## Tail-f CONFD
 
