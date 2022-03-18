@@ -85,6 +85,58 @@ module, and then select get config (execute) → candidate.
 
 ![MG-Soft NETCONF browser - get config](figures/mgsoft-netconf-browser-get-config.png)
 
+The retrieved configuration is shown in XML format in the middle pane (which you can make
+bigger). Note: this screenshot assumes that two interfaces have been configured in the clixon CLI.
 
+![MG-Soft NETCONF browser - get config](figures/mgsoft-netconf-browser-config-xml.png)
 
+To display the same configuration in a more convenient graphical tree format, click
+on the Output Tree tab:
 
+![MG-Soft NETCONF browser - get config](figures/mgsoft-netconf-browser-config-tree.png)
+
+# Change the configuration
+
+To edit the candidate configuration, right-click on the interfaces
+module, and then select edit config (compose) → candidate.
+
+![MG-Soft NETCONF browser - get config](figures/mgsoft-netconf-browser-edit-config.png)
+
+The NETCONF Content Editor window will appear, in which you can change the configuration
+(here we changed the IP address for interface eth1 from 2.2.2.2 to 3.3.3.3).
+
+![MG-Soft NETCONF browser - config editor](figures/mgsoft-netconf-browser-edit-config-details.png)
+
+Note: the nixon NETCONF server does not accept an empty message identified, so you have to enter
+some value (any value) for the `message-id`.
+
+![MG-Soft NETCONF browser - message id](figures/mgsoft-netconf-browser-message-id.png)
+
+At this point you can validate the new configuration on the server by clicking on the 
+Validate on Server button (yellow document with green checkmark):
+
+![MG-Soft NETCONF browser - validate ](figures/mgsoft-netconf-browser-validate.png)
+
+TODO: This does not work; MG-Soft NETCONF browser reports an error:
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<rpc-reply xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="17">
+  <rpc-error>
+    <error-type>application</error-type>
+    <error-tag>operation-failed</error-tag>
+    <error-severity>error</error-severity>
+    <error-message>open(/usr/local/var/interfaces/config_db)</error-message>
+  </rpc-error>
+</rpc-reply>
+```
+
+For some reason, clixon tries to open `/usr/local/var/interfaces/config_db` which does not exist:
+
+<pre>
+$ <b>ls -1 /usr/local/var/interfaces</b>
+candidate_db
+running_db
+startup_db
+tmp_db
+</pre>
