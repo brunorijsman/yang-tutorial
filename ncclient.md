@@ -5,6 +5,13 @@
 [Ncclient](https://github.com/ncclient/ncclient) (short for NETCONF client) is an open source
 Python module that allows you to develop Python scripts that interact with a NETCONF server.
 
+One issue with this project is that the
+[documentation page](https://ncclient.readthedocs.io/en/latest/)
+appears to be broken for some time now (many pages contain lists of empty placeholders).
+So, you will have to be comfortable reading 
+[the source code of `ncclient` on GitHub](https://github.com/ncclient/ncclient/tree/master/ncclient)
+as documentation of its API.
+
 ## Install ncclient
 
 If you followed the 
@@ -60,9 +67,12 @@ $ <b>export NETCONF_SERVER_PASSWORD="topsecret"</b>      # Default: none (certif
 
 TODO: Test certificate-based SSH authentication
 
-## Get the running configuration
+## Show the running configuration
 
-The first example script `show_config_xml.py` shows the running configuration in prettified XML
+TODO: Remove `device_params={'name': 'alu'}` from all examples; it should not be needed anymore
+now that the patch has been submitted to clixon.
+
+The first example script `show_config.py` shows the running configuration in prettified XML
 format:
 
 ```python
@@ -80,8 +90,31 @@ with manager.connect(host=netconf_server_info.address(),
     print(BeautifulSoup(config_xml, 'xml').prettify())
 ```
 
-Running this script produces the following out (this assumed we configured an interface using the
-clixon CLI):
+Module `netconf_server_info` is used to read the environment variables that contain the NETCONF
+server information:
+
+```python
+import psutil
+import os
+
+def address():
+    address = os.getenv('NETCONF_SERVER_ADDRESS')
+    if address is None:
+        return '127.0.0.1'
+    return address
+
+def username():
+    username = os.getenv('NETCONF_SERVER_USERNAME')
+    if username is None:
+        return psutil.Process().username()
+    return username
+
+def password():
+    return os.getenv('NETCONF_SERVER_PASSWORD')
+```
+
+Running the `show_config.py` script produces the following out (this assumes we configured 
+interface `eth0` using the clixon CLI):
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -100,4 +133,48 @@ clixon CLI):
  </data>
 </rpc-reply>
 ```
+
+# Show the client and server capabilties
+
+The example script `show_capabilities.py` shows the NETCONF client (ncclient) and
+server (clixon) capabilities.
+
+```python
+from ncclient import manager
+from bs4 import BeautifulSoup
+import netconf_server_info
+
+with manager.connect(host=netconf_server_info.address(),
+                     port=830,
+                     username=netconf_server_info.username(),
+                     password=netconf_server_info.password(),
+                     hostkey_verify=False,
+                     device_params={'name': 'alu'}) as mgr:
+    print("Client capabilities:")
+    for capability in mgr.client_capabilities:
+        print(f"  {capability}")
+    print("Server capabilities:")
+    for capability in mgr.server_capabilities:
+        print(f"  {capability}")
+```
+
+The output of this script is:
+
+```
+Client capabilities:
+  urn:ietf:params:netconf:base:1.0
+Server capabilities:
+  urn:ietf:params:netconf:base:1.1
+  urn:ietf:params:netconf:base:1.0
+  urn:ietf:params:netconf:capability:candidate:1.0
+  urn:ietf:params:netconf:capability:validate:1.1
+  urn:ietf:params:netconf:capability:startup:1.0
+  urn:ietf:params:netconf:capability:xpath:1.0
+  urn:ietf:params:netconf:capability:notification:1.0
+```
+
+
+# Edit the configuration
+
+The example script `edit_config.py` adds an interface to the configuration:
 
