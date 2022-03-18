@@ -24,6 +24,4 @@ Table of contents:
 
 [YANG Suite from Cisco: an open source suite of YANG tools, including a NETCONF client](yang-suite.md)
 
-[Installation instructions](installation.md)
-
 [References](references.md)
