@@ -20,13 +20,13 @@ $ <b>pip install ncclient</b>
 ## Start the clixon NETCONF server
 
 The MG-Soft NETCONF browser is a NETCONF client, so we need a NETCONF server to be running.
-In this chapter we will use clixon as the NETCONF server.
+We will use clixon as the NETCONF server.
 Refer to the [clixon chapter in this tutorial](clixon.md) for instructions on how install clixon,
 how to build clixon, how the start the clixon backend daemon, and how to configure SSH to start
 the clixon NETCONF server.
 
-You can manually start an SSH session to the clixon NETCONF server to make sure it is running
-properly:
+As a quick sanity check to make sure the NETCONF server is running properly,
+manually start an SSH session. You should see a NETCONF `hello` message from the server:
 
 <pre>
 $ <b>ssh localhost -s netconf</b>
@@ -48,23 +48,56 @@ $ <b>ls -1</b>
 [TODO] output
 </pre>
 
-These example scripts require that the following environment variables are set. 
+You may optionally set the following environment variables to configure the address, username,
+and password of the NETCONF server:
 
 <pre>
-$ export NETCONF_SERVER_ADDRESS="127.0.0.1"
-$ export NETCONF_SERVER_PASSWORD="topsecret"
+$ <b>export NETCONF_SERVER_ADDRESS="10.0.0.99"</b>       # Default: loopback address 127.0.0.1
+$ <b>export NETCONF_SERVER_USERNAME="jamesbond"</b>      # Default: your current username
+$ <b>export NETCONF_SERVER_PASSWORD="topsecret"</b>      # Default: none (certificate based authentication)
 </pre>
 
-The IP address of the NETCONF server is the loopback address (127.0.0.1) if you run ncclient on 
-the same computer as the NETCONF server. However, it may be a different IP address if you run
-ncclient on a different computer or virtual machine than the NETCONF server.
 
-The password is the password of the user account that you are using to SSH connect to the NETCONF
-server.
-
-TODO: Also cover certificate-based SSH authentication?
+TODO: Test certificate-based SSH authentication
 
 ## Get the running configuration
 
+The first example script `show_config_xml.py` shows the running configuration in prettified XML
+format:
 
+```python
+from ncclient import manager
+from bs4 import BeautifulSoup
+import netconf_server_info
+
+with manager.connect(host=netconf_server_info.address(),
+                     port=830,
+                     username=netconf_server_info.username(),
+                     password=netconf_server_info.password(),
+                     hostkey_verify=False,
+                     device_params={'name': 'alu'}) as mgr:
+    config_xml = mgr.get_config(source='running').data_xml
+    print(BeautifulSoup(config_xml, 'xml').prettify())
+```
+
+Running this script produces the following out (this assumed we configured an interface using the
+clixon CLI):
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<rpc-reply message-id="urn:uuid:65f61253-834d-4fca-963f-ad7ed528b790">
+ <data>
+  <interfaces>
+   <interface>
+    <name>
+     eth0
+    </name>
+    <ipv4-address>
+     1.1.1.1
+    </ipv4-address>
+   </interface>
+  </interfaces>
+ </data>
+</rpc-reply>
+```
 
