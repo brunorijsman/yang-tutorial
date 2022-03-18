@@ -12,15 +12,14 @@ with manager.connect(host=netconf_server_info.address(),
     cfg_interface = """
         <config>
             <interfaces xmlns="http://remoteautonomy.com/yang-schemas/interfaces">
-                <config>
-                    <interface>
-                        <name>eth1</name>
-                        <ipv4-address>2.2.2.2</ipv4-address>
-                    </interface>
-                </config>
+                <interface>
+                    <name>eth1</name>
+                    <ipv4-address>2.2.2.2</ipv4-address>
+                </interface>
             </interfaces>        
         </config>
     """
-
-    reply = mgr.edit_config(target="running", config=cfg_interface, default_operation="merge")
-    print(reply)
+    reply = mgr.edit_config(config=cfg_interface)
+    assert reply.xpath("/rpc-reply/ok") != []
+    reply = mgr.commit()
+    assert reply.xpath("/rpc-reply/ok") != []
