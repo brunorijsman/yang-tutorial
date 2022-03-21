@@ -4,6 +4,7 @@ venv/
 # C
 *.o
 *.so
+.depend
 
 # Files created when the user follows tutorial instructions
 **/interfaces.html
