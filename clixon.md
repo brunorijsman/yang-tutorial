@@ -319,7 +319,7 @@ cli>
 
 Now, when we do `show configuration` we see both configured interfaces:
 
-```
+<pre>
 cli> <b>show configuration</b>
 interfaces {
     interface {
@@ -332,25 +332,26 @@ interfaces {
     }
 }
 cli> 
-```
+</pre>
 
 We can also look at the configuration other formats such as XML or JSON:
 
-```
+<pre>
 cli> <b>show configuration xml</b>
-<interfaces xmlns="http://remoteautonomy.com/yang-schemas/interfaces">
-   <interface>
-      <name>eth0</name>
-      <ipv4-address>10.0.0.98</ipv4-address>
-   </interface>
-   <interface>
-      <name>lo</name>
-      <ipv4-address>10.0.0.99</ipv4-address>
-   </interface>
-</interfaces>
-```
+&lt;interfaces xmlns="http://remoteautonomy.com/yang-schemas/interfaces"&gt;
+   &lt;interface&gt;
+      &lt;name&gt;eth0&lt;/name&gt;
+      &lt;ipv4-address&gt;10.0.0.98&lt;/ipv4-address&gt;
+   &lt;/interface&gt;
+   &lt;interface&gt;
+      &lt;name>lo&lt;/name&gt;
+      &lt;ipv4-address&gt;10.0.0.99&lt;/ipv4-address&gt;
+   &lt;/interface&gt;
+&lt;/interfaces&gt;
+&lt;/pre&gt;
+</pre>
 
-```
+<pre>
 cli> <b>show configuration json</b>
 {
   "ietf-restconf:data": {
@@ -368,7 +369,7 @@ cli> <b>show configuration json</b>
     }
   }
 }
-```
+</pre>
 
 Use the `quit` command to exit the CLI and return to the Linux shell:
 
