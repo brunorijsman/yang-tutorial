@@ -1,6 +1,10 @@
 # Python
 venv/
 
+# C
+*.o
+*.so
+
 # Files created when the user follows tutorial instructions
 **/interfaces.html
 **/interfaces.uml
