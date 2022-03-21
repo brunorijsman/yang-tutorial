@@ -77,3 +77,5 @@ module interfaces {
     }
 }
 ```
+
+TODO: Add an rpc to the data model

@@ -137,7 +137,7 @@ $ <b>sudo clixon_backend -f interfaces.xml</b>
 I typically set the debug level to one (`-D 1`) and write the output to a log file:
 
 <pre>
-$ <b>sudo bash -c "clixon_backend -f interfaces.xml -D 1 >/var/log/clixon.log 2>&1"</b>
+$ <b>sudo clixon_backend -f interfaces.xml -lf/var/log/clixon.log -D 1</b>
 </pre>
 
 And then I typically monitor the log file in a separate terminal window:
@@ -252,16 +252,15 @@ the regular expression in the YANG data model:
 <pre>
 leaf ipv4-address {
     type string {
-        <b>pattern '([0-9]+.){3}.[0-9]+';</b>
+        <b>pattern
+          '(([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\.){3}'
+        + '([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])';</b>
     }
     description
       "The IPv4 address of the interface.";
 }
 </pre>
 
-Note that we used a simplistic regular expression that will still accept invalid IPv4 addresses
-(for example "999.999.999.999"). 
-The IETF standard YANG data models for IP addresses contain more sophisticated regular expressions.
 
 Now configure the IPv4 address of a second interface `eth0`.
 In this case, instead of specifying the full path of the configured attribute in the `set` command,
@@ -378,9 +377,35 @@ cli> <b>quit</b>
 $
 </pre>
 
-## Implement a clixon backend plugin
+## Implement a clixon plugin
 
-We will now implemented a fake backend plugin.
+Clixon has the concept of plugins. The responsibilities of a plugin include:
+
+* Validate changes to the data store before they are committed.
+  Many constraints can be expressed in the YANG data model and can be validated by the clixon
+  backend server without having to manually write any code.
+  For example, the `ipv4-address` attribute in our data model enforces that the IPv4 address has
+  the correct format by using the `pattern` option and a regular expression.
+  Other constraints cannot be expressed in YANG and those constraints are validated by the
+  plugin.
+  In this tutorial we will enforce the (silly) constraint that there cannot be more than two
+  interfaces starting with the letter x.
+
+* After each commit that passed the validation phase, process all configuration changes and
+  make them take effect on the underlying hardware platform.
+  In our example, when the user adds a new interface with an IPv4 address, the plugin must
+  interact with the TCP/IP stack to add the IPv4 address. Or when the user modifies the IPv4
+  address of an existing interface in the data store, the plugin must correspondingly modify the
+  IPv4 address of the corresponding interface in the TCP/IP stack. Or when the user deletes
+  an interface from the data store, the plugin must interact with the TCP/IP stack to remove
+  the IPv4 address from the corresponding interface.
+
+* When the user retrieves the value of an operational attribute (e.g. using a `show` command the
+  CLI), the plugin must provide the requested value. For example, when the value of the
+  `sent-packets` attribute in the YANG data model is requested, the plugin must retrieve the
+  corresponding counter from the TCP/IP stack.
+
+We will now implemented a fake plugin.
 It is fake in the sense that it will just swallow any configured IPv4 address without applying
 it to a real interface,
 and it will just return random values for the packet counters instead of reading the real counters
@@ -389,12 +414,20 @@ Later, we will convert the fake plugin with a real plugin that configures and re
 interfaces.
 But for now, we start simple and focus on the APIs provided by clixon.
 
-**TODO: Continue from here**
+The file `interfaces_fake_plugin.c` contains the code for our fake plugin.
+We will now walk through the code to explain how it works.
 
-Start the `clixon_backend` daemon. I like to run it with verbose logging to ease debugging.
-Note that there is *no* ampersand (`&`) needed at the end of this command.
+The first thing we have to do is to register our plugin and the callbacks that must be invoked
+to validate an interface configuration and to commit an interface configuration.
 
-<pre>
-$ <b>sudo clixon_backend -f interfaces.xml -lf/var/log/clixon.log -D 1</b>
-</pre>
+TODO: write code first
+
+We register callbacks for validation (`ca_trans_validate`) and for commit (`ca_trans_commit`).
+We also register callbacks for the beginning of a transaction (`ca_trans_begin`) and the end
+of a transaction (`ca_trans_end`).
+We don't do anything in these callbacks, but it is necessary to register for them anyway,
+otherwise the validation and commit callback won't get called.
+There are additional callbacks that one can register for
+including, `ca_trans_complete`, `ca_trans_commit_done`, `ca_trans_revert`, and `ca_trans_abort`.
+
 
