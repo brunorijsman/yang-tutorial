@@ -128,13 +128,25 @@ install -m 0644 ../interfaces.yang /usr/local/share/clixon
 
 ## Start the clixon backend server daemon
 
-Start the clixon backend daemon:
+Start the clixon backend daemon. The minimal command to start the clixon server is:
 
 <pre>
 $ <b>sudo clixon_backend -f interfaces.xml</b>
 </pre>
 
-Verify that the clixon backend daemon is actually running:
+I typically set the debug level to one (`-D 1`) and write the output to a log file:
+
+<pre>
+$ <b>sudo bash -c "clixon_backend -f interfaces.xml -D 1 >/var/log/clixon.log 2>&1"</b>
+</pre>
+
+And then I typically monitor the log file in a separate terminal window:
+
+<pre>
+$ <b>tail -f /var/log/clixon.log</b>
+</pre>
+
+To verify that the clixon backend daemon is actually running:
 
 <pre>
 $ <b>ps aux | grep clixon</b>
