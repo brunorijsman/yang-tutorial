@@ -17,23 +17,39 @@
 
 #define LOG_TAG "!!!! interfaces_fake_plugin"
 
+void show_xml_node(cxobj *xn) {
+    clicon_debug(1, "%s: XML node name = %s", LOG_TAG, xml_name(xn));
+}
+
+void show_transaction(transaction_data td) {
+    clicon_debug(1, "%s: transaction ID = %lu", LOG_TAG, transaction_id(td));
+    clicon_debug(1, "%s: transaction source:", LOG_TAG);
+    show_xml_node(transaction_src(td));
+    clicon_debug(1, "%s: transaction target:", LOG_TAG);
+    show_xml_node(transaction_target(td));
+}
+
 int interfaces_transaction_begin(clicon_handle h, transaction_data td) {
     clicon_debug(1, "%s: %s", LOG_TAG, __func__);
+    show_transaction(td);
     return 0;
 }
 
 int interfaces_transaction_validate(clicon_handle h, transaction_data td) {
     clicon_debug(1, "%s: %s", LOG_TAG, __func__);
+    show_transaction(td);
     return 0;
 }
 
 int interfaces_transaction_commit(clicon_handle h, transaction_data td) {
     clicon_debug(1, "%s: %s", LOG_TAG, __func__);
+    show_transaction(td);
     return 0;
 }
 
 int interfaces_transaction_end(clicon_handle h, transaction_data td) {
     clicon_debug(1, "%s: %s", LOG_TAG, __func__);
+    show_transaction(td);
     return 0;
 }
 
