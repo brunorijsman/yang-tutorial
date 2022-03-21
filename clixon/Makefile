@@ -22,8 +22,8 @@ YANG_INSTALLDIR	= /usr/local/share/clixon
 
 YANGSPECS		= ../interfaces.yang
 
-PLUGIN          = $(APPNAME)_backend_plugin.so
-PLUGIN_SRC      = $(APPNAME)_backend_plugin.c
+PLUGIN          = $(APPNAME)_fake_plugin.so
+PLUGIN_SRC      = $(APPNAME)_fake_plugin.c
 PLUGIN_OBJ      = $(PLUGIN_SRC:%.c=%.o)
 
 .SUFFIXES: .c .o
@@ -45,7 +45,7 @@ clean:
 distclean: clean
 	rm -f Makefile *~ .depend
 
-install: $(CLISPECS) $(APPNAME).xml
+install: $(CLISPECS) $(APPNAME).xml $(PLUGIN)
 	install -d -m 0755 $(DESTDIR)$(sysconfdir)
 	install -m 0644 $(APPNAME).xml $(DESTDIR)$(sysconfdir)
 	install -d -m 0755 $(DESTDIR)$(libdir)/$(APPNAME)
@@ -67,6 +67,6 @@ uninstall:
 	do rm $(DESTDIR)$(YANG_INSTALLDIR)/$$i; done
 
 depend:
-	$(CC) $(DEPENDFLAGS) $(INCLUDES) $(CFLAGS) -MM $(SRC) > .depend
+	$(CC) $(DEPENDFLAGS) $(INCLUDES) $(CFLAGS) -MM $(PLUGIN_SRC) > .depend
 
 #include .depend
