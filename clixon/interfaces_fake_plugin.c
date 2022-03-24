@@ -76,10 +76,45 @@ int interfaces_transaction_begin(clicon_handle h, transaction_data td) {
     return 0;
 }
 
+int validate_interfaces(transaction_data td) {
+    clicon_debug(1, "%s: %s", LOG_TAG, __func__);
+    int retval = -1;
+
+    cvec *ns_ctx = xml_nsctx_init(NULL, "http://remoteautonomy.com/yang-schemas/interfaces");
+    if (ns_ctx == NULL) {
+        clicon_err(OE_CFG, 0, "Could not create namespace context");
+        goto done;
+    }
+
+    cxobj *target = transaction_target(td);
+    cxobj **nodes_vec = NULL;
+    size_t nodes_len = 0;
+    if (xpath_vec(target, ns_ctx, "/interfaces/interface/name", &nodes_vec, &nodes_len) < 0) {
+        clicon_err(OE_CFG, 0, "Could not retrieve interface names");
+        goto done;
+    }
+
+    int starts_with_x_count = 0;
+	for (int i=0; i<nodes_len; i++){
+	    char *name = xml_body(nodes_vec[i]);
+        if (name != NULL && name[0] == 'x') {
+            starts_with_x_count++;
+        }
+	}
+
+    if (starts_with_x_count < 2) {
+        return 0;
+    }
+    clicon_err(OE_CFG, 0, "Two or more interface names start with the letter x");
+
+done:
+    return retval;
+}
+
 int interfaces_transaction_validate(clicon_handle h, transaction_data td) {
     clicon_debug(1, "%s: %s", LOG_TAG, __func__);
     show_transaction(td, true);
-    return 0;
+    return validate_interfaces(td);
 }
 
 int interfaces_transaction_commit(clicon_handle h, transaction_data td) {
