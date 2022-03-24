@@ -1,7 +1,11 @@
 {
     "cSpell.words": [
+        "avec",
         "Clixon",
         "CONFD",
+        "cxobj",
+        "dvec",
+        "ELMNT",
         "euid",
         "jstree",
         "Ncclient",
@@ -12,7 +16,9 @@
         "psutil",
         "pyang",
         "RESTCONF",
+        "scvec",
         "Sysrepo",
+        "tcvec",
         "venv"
     ]
 }
