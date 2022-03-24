@@ -30,7 +30,11 @@ char* indent_str(size_t indent) {
 }
 
 void show_indented_xml_node(cxobj *node, size_t indent) {
-    clicon_debug(1, "%s: %sXML node name = %s", LOG_TAG, indent_str(indent), xml_name(node));
+    if (xml_body_get(node) == NULL) {
+       clicon_debug(1, "%s: %s%s", LOG_TAG, indent_str(indent), xml_name(node));
+    } else {
+       clicon_debug(1, "%s: %s%s = %s", LOG_TAG, indent_str(indent), xml_name(node), xml_body(node));
+    }
     cxobj *child = NULL;
     while ((child = xml_child_each(node, child, CX_ELMNT)) != NULL) {
         show_indented_xml_node(child, indent+2);
@@ -38,7 +42,7 @@ void show_indented_xml_node(cxobj *node, size_t indent) {
 }
 
 void show_xml_node(cxobj *node) {
-    show_indented_xml_node(node, 0);
+    show_indented_xml_node(node, 2);
 }
 
 void show_transaction(transaction_data td) {
