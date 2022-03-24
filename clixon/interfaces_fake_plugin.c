@@ -1,5 +1,6 @@
 /* TODO: Make sure that all of these header files are actually needed. */
 #include <assert.h>
+#include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdint.h>
@@ -42,38 +43,54 @@ void show_indented_xml_node(cxobj *node, size_t indent) {
 }
 
 void show_xml_node(cxobj *node) {
-    show_indented_xml_node(node, 2);
+    show_indented_xml_node(node, 4);
 }
 
-void show_transaction(transaction_data td) {
-    clicon_debug(1, "%s: transaction ID = %lu", LOG_TAG, transaction_id(td));
-    clicon_debug(1, "%s: transaction source:", LOG_TAG);
-    show_xml_node(transaction_src(td));
-    clicon_debug(1, "%s: transaction target:", LOG_TAG);
-    show_xml_node(transaction_target(td));
+void show_xml_node_vec(cxobj **node_vec, size_t len) {
+    for (size_t i=0; i<len; i++) {
+        show_indented_xml_node(node_vec[i], 4);
+    }
+}
+
+void show_transaction(transaction_data td, bool show_data) {
+    clicon_debug(1, "%s:   transaction ID = %lu", LOG_TAG, transaction_id(td));
+    if (show_data) {
+        clicon_debug(1, "%s:   transaction source:", LOG_TAG);
+        show_xml_node(transaction_src(td));
+        clicon_debug(1, "%s:   transaction target:", LOG_TAG);
+        show_xml_node(transaction_target(td));
+        clicon_debug(1, "%s:   transaction deleted:", LOG_TAG);
+        show_xml_node_vec(transaction_dvec(td), transaction_dlen(td));
+        clicon_debug(1, "%s:   transaction added:", LOG_TAG);
+        show_xml_node_vec(transaction_avec(td), transaction_alen(td));
+        clicon_debug(1, "%s:   transaction changed source:", LOG_TAG);
+        show_xml_node_vec(transaction_scvec(td), transaction_clen(td));
+        clicon_debug(1, "%s:   transaction changed target:", LOG_TAG);
+        show_xml_node_vec(transaction_tcvec(td), transaction_clen(td));
+    }
 }
 
 int interfaces_transaction_begin(clicon_handle h, transaction_data td) {
     clicon_debug(1, "%s: %s", LOG_TAG, __func__);
-    show_transaction(td);
+    show_transaction(td, false);
     return 0;
 }
 
 int interfaces_transaction_validate(clicon_handle h, transaction_data td) {
     clicon_debug(1, "%s: %s", LOG_TAG, __func__);
-    show_transaction(td);
+    show_transaction(td, true);
     return 0;
 }
 
 int interfaces_transaction_commit(clicon_handle h, transaction_data td) {
     clicon_debug(1, "%s: %s", LOG_TAG, __func__);
-    show_transaction(td);
+    show_transaction(td, true);
     return 0;
 }
 
 int interfaces_transaction_end(clicon_handle h, transaction_data td) {
     clicon_debug(1, "%s: %s", LOG_TAG, __func__);
-    show_transaction(td);
+    show_transaction(td, false);
     return 0;
 }
 
