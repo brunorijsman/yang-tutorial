@@ -1,4 +1,5 @@
 /* TODO: Make sure that all of these header files are actually needed. */
+#include <assert.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdint.h>
@@ -16,9 +17,28 @@
 #include <clixon/clixon_backend.h>
 
 #define LOG_TAG "!!!! interfaces_fake_plugin"
+#define MAX_INDENT 128
 
-void show_xml_node(cxobj *xn) {
-    clicon_debug(1, "%s: XML node name = %s", LOG_TAG, xml_name(xn));
+char* indent_str(size_t indent) {
+    static char str[MAX_INDENT + 1];
+    assert(indent <= MAX_INDENT);
+    for (int i=0; i<indent; i++) {
+        str[i] = ' ';
+    }
+    str[indent] = '\0';
+    return str;
+}
+
+void show_indented_xml_node(cxobj *node, size_t indent) {
+    clicon_debug(1, "%s: %sXML node name = %s", LOG_TAG, indent_str(indent), xml_name(node));
+    cxobj *child = NULL;
+    while ((child = xml_child_each(node, child, CX_ELMNT)) != NULL) {
+        show_indented_xml_node(child, indent+2);
+    }
+}
+
+void show_xml_node(cxobj *node) {
+    show_indented_xml_node(node, 0);
 }
 
 void show_transaction(transaction_data td) {
