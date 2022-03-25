@@ -3,6 +3,7 @@
         "avec",
         "Clixon",
         "CONFD",
+        "cvec",
         "cxobj",
         "dvec",
         "ELMNT",
@@ -11,6 +12,7 @@
         "Ncclient",
         "NETCONF",
         "NETMOD",
+        "nsctx",
         "organisation",
         "plantuml",
         "psutil",
@@ -20,5 +22,5 @@
         "Sysrepo",
         "tcvec",
         "venv"
-    ]
+]
 }
