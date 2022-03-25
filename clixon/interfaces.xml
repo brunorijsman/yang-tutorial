@@ -37,5 +37,11 @@
             <operation>enable</operation>
             <module-name>interfaces*</module-name>
         </rule>
+        <rule>
+            <name>compress</name>
+            <operation>compress</operation>
+            <yang-keyword>container</yang-keyword>
+            <yang-keyword-child>list</yang-keyword-child>
+        </rule>
     </autocli>
 </clixon-config>

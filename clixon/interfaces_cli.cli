@@ -1,7 +1,7 @@
 CLICON_MODE="interfaces";
-CLICON_PROMPT="cli> ";
+CLICON_PROMPT="%W> ";
 
-mode("Enter a configuration mode") @datamodel, cli_auto_edit("datamodel");
+edit("Edit a configuration subtree") @datamodel, cli_auto_edit("datamodel");
 up("Move one level up in the configuration"), cli_auto_up("datamodel");
 top("Move to the top level in the configuration"), cli_auto_top("datamodel");
 set("Set a configuration item value") @datamodel, cli_auto_set();
@@ -26,6 +26,7 @@ compare("Compare running and candidate"), compare_dbs((int32)1);
 show("Show a particular state of the system"){
     xpath("Show configuration") <xpath:string>("XPATH expression") <ns:string>("Namespace"), show_conf_xpath("candidate");
     version("Show version"), cli_show_version("candidate", "text", "/");
+    options("Show CLI options"), cli_show_options();
     compare("Compare candidate and running databases"), compare_dbs((int32)0);{
          xml("Show comparison in xml"), compare_dbs((int32)0);
          text("Show comparison in text"), compare_dbs((int32)1);
@@ -46,6 +47,9 @@ show("Show a particular state of the system"){
         json("Show configuration as JSON"), cli_show_config("candidate", "json", "/");{
         	@datamodel, cli_show_auto("candidate", "json");
         }
+    }
+    state("Show configuration and state"), cli_auto_show("datamodel", "running", "text", true, true); {
+    	    xml("Show configuration and state as XML"), cli_auto_show("datamodel", "running", "xml", true, true);
     }
 }
 
