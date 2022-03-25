@@ -1,23 +1,11 @@
-/* TODO: Make sure that all of these header files are actually needed. */
 #include <assert.h>
 #include <stdbool.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <stdint.h>
-#include <inttypes.h>
-#include <string.h>
-#include <errno.h>
-#include <signal.h>
-#include <unistd.h>
-#include <syslog.h>
-#include <fcntl.h>
-#include <sys/time.h>
 
 #include <cligen/cligen.h>
 #include <clixon/clixon.h>
 #include <clixon/clixon_backend.h>
 
-#define LOG_TAG "!!!! interfaces_fake_plugin"
+#define LOG_TAG "interfaces_fake_plugin"
 #define MAX_INDENT 128
 
 char* indent_str(size_t indent) {
