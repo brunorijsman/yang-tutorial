@@ -414,11 +414,12 @@ Later, we will convert the fake plugin with a real plugin that configures and re
 interfaces.
 But for now, we start simple and focus on the APIs provided by clixon.
 
+TODO: Get rid of the 'fake' terminology.
+
 The file `interfaces_fake_plugin.c` contains the code for our fake plugin.
 We will now walk through the code to explain how it works.
 
-The first thing we have to do is to register our plugin and the callbacks that must be invoked
-to validate an interface configuration and to commit an interface configuration.
+The first thing we have to do is to register our plugin and its callback functions:
 
 TODO: write code first
 
