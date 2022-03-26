@@ -432,3 +432,11 @@ There are additional callbacks that one can register for
 including, `ca_trans_complete`, `ca_trans_commit_done`, `ca_trans_revert`, and `ca_trans_abort`.
 
 
+## References
+
+* [The clixon GitHub repository](https://github.com/clicon/clixon)
+
+* [The clixon examples GitHub repository](https://github.com/clicon/clixon-examples)
+
+* [Clixon documentation](https://clixon-docs.readthedocs.io/en/latest/)
+

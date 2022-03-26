@@ -2,45 +2,132 @@
 
 # A scenic tour through the YANG ecosystem
 
-Table of contents:
+# Introduction
 
-[Introduction](docs/introduction.md)
+In this tutorial we will take a hands-on scenic tour through the YANG related ecosystem:
+
+ * Write a simple YANG data model to manage a set of interfaces.
+
+ * Use [pyang](https://github.com/mbj4668/pyang) to validate the YANG data model and to convert it
+   to various other formats.
+
+ * Use [clixon](https://clixon-docs.readthedocs.io/en/latest/) to implement a server that:
+   - Implements the YANG data model.
+   - Provides a command line interface (CLI).
+   - Provides a NETCONF interface.
+   - Provides a RESTCONF interface.
+   - Initially provides a mocked backend for fake interfaces.
+   - Later on provides a real backend for real interfaces on a Linux host.
+
+* Use the clixon CLI client to access the command line interface provided by the clixon server.
+
+* Use the [MGSoft](https://www.mg-soft.si/) [NETCONF browser](https://www.mg-soft.si/) to access
+  the NETCONF interface provided by the clixon server.
+
+* Use [ncclient](https://github.com/ncclient/ncclient) as a NETCONF client of the NETCONF
+  interface provided by the clixon server.
+
+* Use the basic version of [Tail-f](https://www.tail-f.com/)
+   [CONFD](https://www.tail-f.com/confd-basic/) to implement a server that:
+   - Implements the YANG data model.
+   - Provides a command line interface (CLI).
+   - Provides a NETCONF interface.
+   - Initially provides a mocked backend for fake interfaces.
+   - Later on provides a real backend for real interfaces on a Linux host.
+
+* TODO: Add a YumaPro basic example.
+
+* TODO: Add a Sysrepo example.
+
+
+# Getting ready
 
 [Setting up the environment for this tutorial](docs/tutorial-install.md)
 
 [An example YANG data model](docs/example-yang-data-model.md)
 
-[Pyang: validating and converting YANG data models](docs/pyang.md)
+# YANG data model validation and transformation tools:
 
-[Clixon: an open source NETCONF server](docs/clixon.md)
+These tools validate YANG data models for correctness and transform YANG data models into other
+formats such as a text summary, an HTML summary, a UML diagram, etc.
 
-[NETCONF browser from MG-Soft: a commercial NETCONF client with a graphical user interface](mg-soft-browser.md)
+Open source:
 
-[Ncclient: an open source Python NETCONF client module](docs/ncclient.md)
+* [Pyang](docs/pyang.md)
 
-[YumaPro from YumaWorks: another commercial NETCONF server](docs/yumapro.md)
+* [Yanglint](https://www.mankier.com/1/yanglint) (TODO)
 
-[CONFD from Cisco Tail-F: a commercial NETCONF server](docs/confd.md)
+# Graphical YANG browsers
 
-[YANG Suite from Cisco: an open source suite of YANG tools, including a NETCONF client](docs/yang-suite.md)
+These tools provide a graphical user interface that allow you to:
 
-[References](docs/references.md)
+1. Load a YANG data model and browse through the structure of that data model.
 
-Other open source projects not yet covered:
+2. Connect to a YANG server using NETCONF or RESTCONF, browse through the contents of the data
+   store, edit the contents of the data store, and invoke YANG actions.
 
-* [Yangson](https://yangson.labs.nic.cz/): a Python 3 library for working with YANG-modelled
-  JSON-encoded data.
+Commercial:
 
-* [Yanglint](https://www.mankier.com/1/yanglint): A command-line tool for validating and
-  converting YANG data models.
+* [NETCONF browser from MG-Soft](mg-soft-browser.md)
 
-* [Libyang](https://netopeer.liberouter.org/doc/libyang/devel/html/): A C library for processing
-  YANG data models and data stores.
+* YumaBench from YumaWorks
 
-* [Sysrepo](https://github.com/sysrepo/sysrepo): a YANG-based configuration and operational state
-  data store for Unix/Linux applications.
+Open source / commercial:
 
-* [Netopeer2](https://github.com/CESNET/netopeer2): a server for implementing network configuration
-  management based on the NETCONF Protocol.
+[YANG Suite from Cisco](docs/yang-suite.md)
 
+# YANG servers
 
+A YANG server (also known as a YANG backend server):
+
+* Implements the data store that stores data according to the data model described by YANG
+  data models.
+
+* Provides one or more of the following north-bound interfaces to access the data store:
+  * NETCONF
+  * RESTCONF
+  * Command line interface (CLI)
+  * SNMP
+
+Open source:
+
+* [Clixon](docs/clixon.md)
+
+* [Netopeer2](https://github.com/CESNET/netopeer2) (TODO)
+
+* [Sysrepo](https://github.com/sysrepo/sysrepo) (TODO)
+
+Commercial:
+
+* [CONFD from Tail-F (a Cisco company)](docs/confd.md)
+
+* [YumaPro from YumaWorks](docs/yumapro.md)
+
+# YANG client libraries
+
+These tools are libraries or modules in a particular programming language (e.g. C, C++)
+that provide NETCONF and/or RESTCONF client functionality to software developers:
+
+Open source:
+
+* [Libyang](https://netopeer.liberouter.org/doc/libyang/devel/html/) (C) (TODO)
+
+* [Ncclient](docs/ncclient.md) (Python)
+
+* [Yangson](https://yangson.labs.nic.cz/) (Python)
+
+# References
+
+## YANG
+
+## NETMOD
+
+* [The IETF NETMOD working group](https://datatracker.ietf.org/wg/netmod/about/)
+* [The IETF NETMOD standards](https://datatracker.ietf.org/wg/netmod/documents/)
+
+## NETCONF
+
+* [The IETF NETCONF working group](https://datatracker.ietf.org/wg/netconf/about/)
+* [The IETF NETCONF standards](https://datatracker.ietf.org/wg/netconf/documents/)
+
+## RESTCONF

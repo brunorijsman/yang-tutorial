@@ -9,9 +9,11 @@
         "ELMNT",
         "euid",
         "jstree",
+        "Libyang",
         "Ncclient",
         "NETCONF",
         "NETMOD",
+        "Netopeer",
         "nsctx",
         "organisation",
         "plantuml",
@@ -19,8 +21,11 @@
         "pyang",
         "RESTCONF",
         "scvec",
+        "SNMP",
         "Sysrepo",
         "tcvec",
-        "venv"
+        "venv",
+        "Yanglint",
+        "Yangson"
 ]
 }
