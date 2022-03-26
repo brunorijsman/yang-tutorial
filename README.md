@@ -64,8 +64,8 @@ These tools provide a graphical user interface that allow you to:
    store, edit the contents of the data store, and invoke YANG actions.
 
 Commercial:
-* [NETCONF browser from MG-Soft](mg-soft-browser.md)
-* YumaBench from YumaWorks
+* [NETCONF browser from MG-Soft](docs/mg-soft-browser.md)
+* [YumaBench from YumaWorks](docs/yumabench.md)
 
 Open source / commercial:
 * [YANG Suite from Cisco](docs/yang-suite.md)
