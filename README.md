@@ -46,15 +46,13 @@ In this tutorial we will take a hands-on scenic tour through the YANG related ec
 
 [An example YANG data model](docs/example-yang-data-model.md)
 
-# YANG data model validation and transformation tools:
+# YANG data model validation and transformation tools
 
 These tools validate YANG data models for correctness and transform YANG data models into other
 formats such as a text summary, an HTML summary, a UML diagram, etc.
 
 Open source:
-
 * [Pyang](docs/pyang.md)
-
 * [Yanglint](https://www.mankier.com/1/yanglint) (TODO)
 
 # Graphical YANG browsers
@@ -67,14 +65,11 @@ These tools provide a graphical user interface that allow you to:
    store, edit the contents of the data store, and invoke YANG actions.
 
 Commercial:
-
 * [NETCONF browser from MG-Soft](mg-soft-browser.md)
-
 * YumaBench from YumaWorks
 
 Open source / commercial:
-
-[YANG Suite from Cisco](docs/yang-suite.md)
+* [YANG Suite from Cisco](docs/yang-suite.md)
 
 # YANG servers
 
@@ -90,17 +85,12 @@ A YANG server (also known as a YANG backend server):
   * SNMP
 
 Open source:
-
 * [Clixon](docs/clixon.md)
-
 * [Netopeer2](https://github.com/CESNET/netopeer2) (TODO)
-
 * [Sysrepo](https://github.com/sysrepo/sysrepo) (TODO)
 
 Commercial:
-
 * [CONFD from Tail-F (a Cisco company)](docs/confd.md)
-
 * [YumaPro from YumaWorks](docs/yumapro.md)
 
 # YANG client libraries
@@ -109,11 +99,8 @@ These tools are libraries or modules in a particular programming language (e.g. 
 that provide NETCONF and/or RESTCONF client functionality to software developers:
 
 Open source:
-
 * [Libyang](https://netopeer.liberouter.org/doc/libyang/devel/html/) (C) (TODO)
-
 * [Ncclient](docs/ncclient.md) (Python)
-
 * [Yangson](https://yangson.labs.nic.cz/) (Python)
 
 # References
