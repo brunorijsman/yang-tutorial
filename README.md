@@ -39,8 +39,7 @@ In this tutorial we will take a hands-on scenic tour through the YANG related ec
 
 * TODO: Add a Sysrepo example.
 
-
-# Getting ready
+# Getting started
 
 [Setting up the environment for this tutorial](docs/tutorial-install.md)
 
@@ -81,6 +80,7 @@ A YANG server (also known as a YANG backend server):
 * Provides one or more of the following north-bound interfaces to access the data store:
   * NETCONF
   * RESTCONF
+  * gNMI
   * Command line interface (CLI)
   * SNMP
 
@@ -118,3 +118,9 @@ Open source:
 * [The IETF NETCONF standards](https://datatracker.ietf.org/wg/netconf/documents/)
 
 ### RESTCONF
+
+TODO
+
+### gNMI
+
+TODO

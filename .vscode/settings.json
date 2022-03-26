@@ -26,6 +26,7 @@
         "tcvec",
         "venv",
         "Yanglint",
-        "Yangson"
+        "Yangson",
+        "yumabench"
 ]
 }
