@@ -103,18 +103,18 @@ Open source:
 * [Ncclient](docs/ncclient.md) (Python)
 * [Yangson](https://yangson.labs.nic.cz/) (Python)
 
-# References
+# Standards
 
-## YANG
+### YANG
 
-## NETMOD
+### NETMOD
 
 * [The IETF NETMOD working group](https://datatracker.ietf.org/wg/netmod/about/)
 * [The IETF NETMOD standards](https://datatracker.ietf.org/wg/netmod/documents/)
 
-## NETCONF
+### NETCONF
 
 * [The IETF NETCONF working group](https://datatracker.ietf.org/wg/netconf/about/)
 * [The IETF NETCONF standards](https://datatracker.ietf.org/wg/netconf/documents/)
 
-## RESTCONF
+### RESTCONF
