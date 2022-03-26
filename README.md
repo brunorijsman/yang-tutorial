@@ -4,27 +4,27 @@
 
 Table of contents:
 
-[Introduction](introduction.md)
+[Introduction](docs/introduction.md)
 
-[Setting up the environment for this tutorial](tutorial-install.md)
+[Setting up the environment for this tutorial](docs/tutorial-install.md)
 
-[An example YANG data model](example-yang-data-model.md)
+[An example YANG data model](docs/example-yang-data-model.md)
 
-[Pyang: validating and converting YANG data models](pyang.md)
+[Pyang: validating and converting YANG data models](docs/pyang.md)
 
-[Clixon: an open source NETCONF server](clixon.md)
+[Clixon: an open source NETCONF server](docs/clixon.md)
 
 [NETCONF browser from MG-Soft: a commercial NETCONF client with a graphical user interface](mg-soft-browser.md)
 
-[Ncclient: an open source Python NETCONF client module](ncclient.md)
+[Ncclient: an open source Python NETCONF client module](docs/ncclient.md)
 
-[YumaPro from YumaWorks: another commercial NETCONF server](yumapro.md)
+[YumaPro from YumaWorks: another commercial NETCONF server](docs/yumapro.md)
 
-[CONFD from Cisco Tail-F: a commercial NETCONF server](confd.md)
+[CONFD from Cisco Tail-F: a commercial NETCONF server](docs/confd.md)
 
-[YANG Suite from Cisco: an open source suite of YANG tools, including a NETCONF client](yang-suite.md)
+[YANG Suite from Cisco: an open source suite of YANG tools, including a NETCONF client](docs/yang-suite.md)
 
-[References](references.md)
+[References](docs/references.md)
 
 Other open source projects not yet covered:
 
