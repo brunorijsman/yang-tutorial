@@ -4,40 +4,45 @@
 
 # Introduction
 
-In this tutorial we will take a hands-on scenic tour through the YANG related ecosystem:
+This is a hands-on tutorial of the YANG ecosystem.
 
- * Write a simple YANG data model to manage a set of interfaces.
+YANG is a data modeling language that is used for managing devices.
+YANG is quite popular for managing networking devices such as router, switches, firewalls,
+load balancers, etc.
+But in principle, YANG could be used to describe the management model for any device such as
+washing machine, a satellite, a robot, a storage array, whatever.
 
- * Use [pyang](https://github.com/mbj4668/pyang) to validate the YANG data model and to convert it
-   to various other formats.
+A YANG data model describes what the configurable and operational attributes of the device are.
+A configuration attribute is an attribute that can be set by the operator, such as the temperature
+for a washing machine (hot, warm, cold).
+An operational attribute is an attribute that can only be read by the operator, such as the
+remaining time for the cycle of a washing machine.
 
- * Use [clixon](https://clixon-docs.readthedocs.io/en/latest/) to implement a server that:
-   - Implements the YANG data model.
-   - Provides a command line interface (CLI).
-   - Provides a NETCONF interface.
-   - Provides a RESTCONF interface.
-   - Initially provides a mocked backend for fake interfaces.
-   - Later on provides a real backend for real interfaces on a Linux host.
+The YANG data model is used to generate a management interface for the device.
 
-* Use the clixon CLI client to access the command line interface provided by the clixon server.
+One example of such a management interface is the command line interface (CLI) which is a
+an interface intended for humans to configure and monitor the device.
 
-* Use the [MGSoft](https://www.mg-soft.si/) [NETCONF browser](https://www.mg-soft.si/) to access
-  the NETCONF interface provided by the clixon server.
+Other examples of management interfaces are NETCONF and RESTCONF. These are intended to be used
+by network management systems (NMSs) or software defined networking (SDN) controllers to configure
+and monitor the device.
 
-* Use [ncclient](https://github.com/ncclient/ncclient) as a NETCONF client of the NETCONF
-  interface provided by the clixon server.
+In this tutorial we won't spend much time on the theory of what YANG, CLI, NETCONF, or RESTCONF
+are.
 
-* Use the basic version of [Tail-f](https://www.tail-f.com/)
-   [CONFD](https://www.tail-f.com/confd-basic/) to implement a server that:
-   - Implements the YANG data model.
-   - Provides a command line interface (CLI).
-   - Provides a NETCONF interface.
-   - Initially provides a mocked backend for fake interfaces.
-   - Later on provides a real backend for real interfaces on a Linux host.
+Instead, we will take a very hands-on approach, and dive right in. We will define a toy YANG
+data model for a router; it models only the IPv4 addresses on a set of interfaces.
 
-* TODO: Add a YumaPro basic example.
+Then, we will "take a tour through the YANG ecosystem". We will explore various open source and
+commercial tools that do something with our toy YANG data model. Some tools allow us to validate
+the correctness of the YANG data model. Other tools allow us to generate the code that would run
+on the managed network devices: the CLI/NETCONF/RESTCONF server code that actually reflects
+changes in the configuration onto the actual hardware. And other tools yet again allow us to
+generate the code that runs in the network management system, i.e. the NETCONF/RESTCONF client
+code.
 
-* TODO: Add a Sysrepo example.
+We take a very hands-on approach for each tool that we explore: we explain how to install the tool
+and how to use it to do something practically useful.
 
 # Getting started
 

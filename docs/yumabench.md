@@ -62,3 +62,5 @@ that. Chapter 4 in the
 seems to indicate that I should use the menu options "SDK -> SIL/SIL-SA -> Module/Bundle" to
 add the YANG data model, but those options are always grayed out in the early release version
 of YumaBench that I have. Note that the monitoring tab does should the full YANG model hierarchy.
+
+![YumaBench session window](figures/yumabench-session-monitoring.png)
