@@ -6,8 +6,7 @@ with manager.connect(host=netconf_server_info.address(),
                      port=830,
                      username=netconf_server_info.username(),
                      password=netconf_server_info.password(),
-                     hostkey_verify=False,
-                     device_params={'name': 'alu'}) as mgr:
+                     hostkey_verify=False) as mgr:
 
     cfg_interface = """
         <config>
