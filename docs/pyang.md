@@ -147,3 +147,12 @@ $ <b>firefox img/interfaces.png</b>
 </pre>
 
 ![Pyang uml diagram](figures/pyang-uml-diagram.png)
+
+## References
+
+* [The pyang GitHub repository](https://github.com/mbj4668/pyang)
+
+* [A pyang tutorial](https://www.ietf.org/slides/slides-edu-pyang-tutorial-01.pdf)
+
+* [The PlantUML home page](https://plantuml.com/)
+

@@ -1,4 +1,4 @@
-# NETCONF browser from MG-Soft: a commercial NETCONF client with a graphical user interface
+# NETCONF browser from MG-Soft
 
 ## Introduction
 
@@ -140,3 +140,10 @@ running_db
 startup_db
 tmp_db
 </pre>
+
+## References
+
+* [The MG-Soft company homepage](https://www.mg-soft.si/)
+
+* [The MG-Soft NETCONF browser product page](https://www.mg-soft.si/mgNetConfBrowser.html)
+
