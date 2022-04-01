@@ -31,43 +31,48 @@ or the YumaPro product suite from [YumaWorks](https://www.yumaworks.com/).
 YANG-based configuration data store with plugin APIs for configuration consuming applications and 
 with CLI, NETCONF, and RESTCONF frontend interfaces.
 
-TODO: Install dependencies. Use a fresh Ubuntu virtual machine to get the exact steps right.
+Install the dependencies for `clixon`:
 
-Clone the `clixon` GitHub repository:
+<pre>
+$ sudo apt-get install flex bison
+</pre>
+
+Add `clixon` and `clicon` user groups and add users to them 
+(replace _<your-username>_ with your username):
+
+<pre>
+$ <b>sudo useradd -M -U clixon</b>
+$ <b>sudo usermod -a -G clixon <i>&lt;your-user-name&gt;</i></b>
+$ <b>sudo usermod -a -G clixon www-data</b>
+$ <b>sudo useradd -M -U clicon</b>
+$ <b>sudo usermod -a -G clicon <i>&lt;your-user-name&gt;</i></b>
+$ <b>sudo usermod -a -G clicon www-data</b>
+</pre>
+
+
+Log out and log in again, to make the new user group settings take effect.
+
+Clone, build, and install the `cligen` GitHub repository:
 
 <pre>
 $ <b>cd ~</b>
-
-$ <b>git clone https://github.com/clicon/clixon.git</b>
-Cloning into 'clixon'...
-[...]
+$ <b>git clone https://github.com/clicon/cligen.git</b>
+$ <b>cd cligen</b>
+$ <b>./configure</b>
+$ <b>make</b>
+$ <b>sudo make install</b>
 </pre>
 
-Build `clixon`:
+
+Clone, build, and install the `clixon` GitHub repository:
 
 <pre>
+$ <b>cd ~</b>
+$ <b>git clone https://github.com/clicon/clixon.git</b>
 $ <b>cd clixon</b>
-
 $ <b>./configure</b>
-debug is no
-checking for gcc... gcc
-[...]
-config.status: creating include/clixon_config.h
-config.status: creating lib/clixon/clixon.h
-
 $ <b>make</b>
-(cd include && make  all)
-make[1]: Entering directory '/home/parallels/test/clixon/include'
-[...]
-/usr/bin/id
-After 'make install' as euid root, build example app and test utils: 'make example'
-
 $ <b>sudo make install</b>
-/usr/bin/id
-for i in include lib  apps etc yang  doc; \
-[...]
-To install example app and test utils: make install-example
-make[1]: Leaving directory '/home/parallels/test/clixon'
 </pre>
 
 We will explain how to start the clixon backend server and the clixon frontend servers for the
