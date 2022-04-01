@@ -1,5 +1,7 @@
 appdirs==1.4.4
 bcrypt==3.2.0
+beautifulsoup4==4.10.0
+bs4==0.0.1
 certifi==2021.10.8
 cffi==1.15.0
 charset-normalizer==2.0.12
@@ -22,6 +24,7 @@ networkx==1.11
 packaging==19.0
 paramiko==2.10.1
 pexpect==4.8.0
+psutil==5.9.0
 ptyprocess==0.7.0
 pyang==2.5.2
 pycparser==2.21
@@ -38,6 +41,7 @@ requests==2.27.1
 scp==0.14.4
 six==1.16.0
 smmap==5.0.0
+soupsieve==2.3.1
 text-unidecode==1.3
 textfsm==0.4.1
 urllib3==1.26.8
