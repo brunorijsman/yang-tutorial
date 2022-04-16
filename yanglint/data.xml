@@ -1,9 +1,6 @@
-<?xml version="1.0" encoding="utf-8"?>
-<data xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
-  <interfaces xmlns="http://remoteautonomy.com/yang-schemas/interfaces">
+<interfaces xmlns="http://remoteautonomy.com/yang-schemas/interfaces">
     <interface>
-      <name>eth0</name>
-      <ipv4-address>1.1.1.1</ipv4-address>
+        <name>eth0</name>
+        <ipv4-address>1.1.1.1</ipv4-address>
     </interface>
-  </interfaces>
-</data>
+</interfaces>
