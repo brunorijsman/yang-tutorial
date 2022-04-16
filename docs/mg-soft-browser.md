@@ -33,24 +33,36 @@ how to build clixon, how the start the clixon backend daemon, and how to configu
 the clixon NETCONF server.
 
 As a quick sanity check to make sure the NETCONF server is running properly,
-manually start an SSH session. You should see a NETCONF `hello` message from the server:
+manually start an SSH session
+(replace <i>username@&lt;vm-ip-address&gt;</i> with the usenname and IP address of the virtual
+machine that runs the clixon NETCONF server).
+ You should see a NETCONF `hello` message from the server:
 
 <pre>
-$ <b>ssh localhost -s netconf</b>
+$ <b>ssh <i>&lt;username@vm-ip-address&gt;</i> -s netconf</b>
 username@localhost's password: <b>******</b>
 <hello xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="42"><capabilities><capability>urn:ietf:params:netconf:base:1.1</capability><capability>urn:ietf:params:netconf:base:1.0</capability><capability>urn:ietf:params:netconf:capability:candidate:1.0</capability><capability>urn:ietf:params:netconf:capability:validate:1.1</capability><capability>urn:ietf:params:netconf:capability:startup:1.0</capability><capability>urn:ietf:params:netconf:capability:xpath:1.0</capability><capability>urn:ietf:params:netconf:capability:notification:1.0</capability></capabilities><session-id>4</session-id></hello>]]>]]>
 </pre>
 
 Type Control-D to exit the SSH session.
 
-# Load the YANG data model into MG-SOFT NetConf Browser
+# Start the MG-SOFT NetConf Browser
 
-When you start the MG-SOFT NetConf Browser for the first time, you get the following screen:
+Double click on the MG-SOFT NetConf Browser icon in the applications folder.
+
+![MG-SOFT NetConf Browser icon](figures/mgsoft-netconf-browser-icon.png)
+
+When you start the MG-SOFT NetConf Browser for the first time, it will give you the opportunity
+to install the evaluation license
+(you can also do this later using the Help → Apply License Key... menu item.)
+
+![MG-SOFT NetConf Browser first time startup screen](figures/mgsoft-netconf-browser-first-time.png)
+
+After installing the license key, you end up in the following screen:
 
 ![MG-SOFT NetConf Browser startup screen](figures/mgsoft-netconf-browser-startup.png)
 
-If you haven't already done so, apply your license key using the Help → Apply License Key... menu
-item.
+# Load the YANG data model into MG-SOFT NetConf Browser
 
 The first thing we have to do is to load our `interfaces.yang` YANG data model into the
 MG-SOFT NetConf Browser.
@@ -63,9 +75,19 @@ The `interfaces` YANG module appears in the left pane of the MG-SOFT NetConf Bro
 
 ![MG-SOFT NetConf Browser - YANG module in panel](figures/mgsoft-netconf-browser-module-in-panel.png)
 
+You can right-click on `interfaces` and choose menu item Expand Entire Subtree.
+
+![MG-SOFT NetConf Browser - expand entire subtree](figures/mgsoft-netconf-browser-expand-entire-subtree.png)
+
+This shows an outline of the `interfaces` YANG module.
+
+![MG-SOFT NetConf Browser - interfaces subtree](figures/mgsoft-netconf-browser-interfaces-subtree.png)
+
 # Connect to the NETCONF server
 
-To connect ot the clixon NETCONF server, select the File → Connect... menu item and enter 
+To connect ot the clixon NETCONF server, select the File → Connect... menu item and enter the
+following information (replace 10.211.55.8 with the IP address of the virtual machine that runs
+your NETCONF server and replace parallels with the username on the virtual machine).
 
 ![MG-SOFT NetConf Browser - connect to server](figures/mgsoft-netconf-browser-connect-to-server.png)
 
