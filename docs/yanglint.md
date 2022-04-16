@@ -256,9 +256,7 @@ err : Value "300.1.1.1" does not satisfy the constraint "(([0-9]|[1-9][0-9]|1[0-
 
 ## References
 
-* [The pyang GitHub repository](https://github.com/mbj4668/pyang)
+* [The yanglint manual page](https://www.mankier.com/1/yanglint)
 
-* [A pyang tutorial](https://www.ietf.org/slides/slides-edu-pyang-tutorial-01.pdf)
-
-* [The PlantUML home page](https://plantuml.com/)
+* [The libyang GitHub repository](https://github.com/CESNET/libyang)
 
