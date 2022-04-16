@@ -56,7 +56,7 @@ This brings up the session window:
 ![YumaBench session window](figures/yumabench-session-window.png)
 
 **TODO**: I am supposed to see the full YANG data model tree here. I should probably load the YANG
-data model first (at least, this is how it works in MG-Soft). But I cannot figure out how to do
+data model first (at least, this is how it works in MG-SOFT). But I cannot figure out how to do
 that. Chapter 4 in the
 [user manual](https://www.yumaworks.com/pub/docs/yumabench/yumabench-user-manual.pdf)
 seems to indicate that I should use the menu options "SDK -> SIL/SIL-SA -> Module/Bundle" to
