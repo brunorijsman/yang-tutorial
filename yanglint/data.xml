@@ -1,6 +1,10 @@
 <interfaces xmlns="http://remoteautonomy.com/yang-schemas/interfaces">
     <interface>
-        <name>eth0</name>
+        <name>eth1</name>
         <ipv4-address>1.1.1.1</ipv4-address>
+    </interface>
+    <interface>
+        <name>eth2</name>
+        <ipv4-address>2.2.2.2</ipv4-address>
     </interface>
 </interfaces>
