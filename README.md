@@ -43,13 +43,16 @@ code.
 We take a very hands-on approach for each tool that we explore: we explain how to install the tool
 and how to use it to do something practically useful.
 
+For a list of standards related to YANG, NETCONF, RESTCONF, etc. see the 
+[standards page](docs/standards.md).
+
 # Getting started
 
 [Setting up the environment for this tutorial](docs/tutorial-install.md)
 
 [An example YANG data model](docs/example-yang-data-model.md)
 
-# YANG data model validation and transformation tools
+# YANG data model visualization, validation and transformation tools
 
 These tools validate YANG data models for correctness and transform YANG data models into other
 formats such as a text summary, an HTML summary, a UML diagram, etc.
@@ -57,6 +60,9 @@ formats such as a text summary, an HTML summary, a UML diagram, etc.
 Open source:
 * [Pyang](docs/pyang.md)
 * [Yanglint](https://www.mankier.com/1/yanglint) (TODO)
+
+Commercial:
+* [MG-SOFT YANG Explorer Professional Edition](https://www.mg-soft.si/mgYangExplorer.html) (TODO)
 
 # Graphical YANG browsers
 
@@ -76,7 +82,7 @@ Open source / commercial:
 
 # YANG servers
 
-A YANG server (also known as a YANG backend server):
+A YANG server (also known as a YANG backend server or a NETCONF server or a RESTCONF server):
 
 * Implements the data store that stores data according to the data model described by YANG
   data models.
@@ -95,6 +101,7 @@ Open source:
 
 Commercial:
 * [CONFD from Tail-F (a Cisco company)](docs/confd.md)
+* [MG-SOFT NETCONF Simulator](https://www.mg-soft.si/mgNetConfSimulator.html) (TODO)
 * [YumaPro from YumaWorks](docs/yumapro.md)
 
 # YANG client libraries
@@ -107,24 +114,14 @@ Open source:
 * [Ncclient](docs/ncclient.md) (Python)
 * [Yangson](https://yangson.labs.nic.cz/) (Python)
 
-# Standards
+Commercial:
+* [MG-SOFT NETCONF/YANG Python Scripting System](https://www.mg-soft.si/mgNetConfScripting.html) (TODO)
 
-### YANG
+# YANG authoring tools
 
-### NETMOD
+YANG authoring tools provide an integrated development environment (IDE) that help you author and
+manage YANG data models.
 
-* [The IETF NETMOD working group](https://datatracker.ietf.org/wg/netmod/about/)
-* [The IETF NETMOD standards](https://datatracker.ietf.org/wg/netmod/documents/)
+Commercial:
+* [MG-SOFT Visual YANG Designer Professional Edition](https://www.mg-soft.si/mgYangDesigner.html) (TODO)
 
-### NETCONF
-
-* [The IETF NETCONF working group](https://datatracker.ietf.org/wg/netconf/about/)
-* [The IETF NETCONF standards](https://datatracker.ietf.org/wg/netconf/documents/)
-
-### RESTCONF
-
-TODO
-
-### gNMI
-
-TODO
