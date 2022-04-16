@@ -142,7 +142,6 @@ $ <b>yanglint -f jsons interfaces.yang | jq</b>
 }
 </pre>
 
-
 ## Interactive mode
 
 It is also possible to run `yanglint` in interactive mode:
@@ -161,6 +160,98 @@ module: interfaces
 > <b>print interfaces -f jsons</b>
 {"interfaces":{"namespace":"http://remoteautonomy.com/yang-schemas/interfaces","prefix":"intf","description":{"text":"A simplistic tutorial data model for interfaces on a device."},"organization":{"text":"Remote Autonomy"},"contact":{"text":"Bruno Rijsman\u000Abrunorijsman@remoteautonomy.com"},"yang-version":{"value":"1.0"},"revision":{"2022-03-12":{"description":{"text":"Initial revision."}}},"data":{"interfaces":{"nodetype":"container"}}}}
 > <b>quit</b>
+</pre>
+
+## Validate and convert instance data
+
+In addition to validating and converting data models, `yanglint` can also validate that instance
+data confirms to a given data model and convert instance data.
+
+Consider the following instance data in XML format (these are the contents of file
+[`yanglint/data.xml`](https://github.com/brunorijsman/yang-tutorial/blob/main/yanglint/data.xml)
+in the YANG tutorial repo):
+
+```xml
+<interfaces xmlns="http://remoteautonomy.com/yang-schemas/interfaces">
+    <interface>
+        <name>eth1</name>
+        <ipv4-address>1.1.1.1</ipv4-address>
+    </interface>
+    <interface>
+        <name>eth2</name>
+        <ipv4-address>2.2.2.2</ipv4-address>
+    </interface>
+</interfaces>
+```
+
+The following sequence of commends in `yanglint` interactive mode validates that the above
+instance data confirms to the `interfaces.yang` data model and converts the instance data from
+XML to JSON:
+
+<pre>
+$ <b>yanglint</b>
+> <b>load interfaces</b>
+> <b>data -s -t config yanglint/data.xml -f json</b>
+{
+  "interfaces:interfaces": {
+    "interface": [
+      {
+        "name": "eth1",
+        "ipv4-address": "1.1.1.1"
+      },
+      {
+        "name": "eth2",
+        "ipv4-address": "2.2.2.2"
+      }
+    ]
+  }
+}
+</pre>
+
+Here the `-s` option enables strict validation, the `-t config` option indicates that we are
+validating configuration data, and the `-f json` option indicates that the instance data must
+be converted to JSON.
+
+We can also perform the instance data validation and conversion from the command-line:
+
+<pre>
+$ <b>yanglint -s -t config yanglint/data.xml -f json interfaces.yang</b>
+{
+  "interfaces:interfaces": {
+    "interface": [
+      {
+        "name": "eth1",
+        "ipv4-address": "1.1.1.1"
+      },
+      {
+        "name": "eth2",
+        "ipv4-address": "2.2.2.2"
+      }
+    ]
+  }
+}
+</pre>
+
+Now, to demonstration a validation failure,
+consider the following instance data in XML format (these are the contents of file
+[`yanglint/bad-data.xml`](https://github.com/brunorijsman/yang-tutorial/blob/main/yanglint/bad-data.xml)
+in the YANG tutorial repo).
+Note that the IPv4 address is invalid (the first byte 300 is not in the range 0-255).
+
+```xml
+<interfaces xmlns="http://remoteautonomy.com/yang-schemas/interfaces">
+    <interface>
+        <name>eth</name>
+        <ipv4-address>300.1.1.1</ipv4-address>
+    </interface>
+</interfaces>
+```
+
+Validating this instance data produces the following error message:
+
+<pre>
+$ <b>yanglint -s -t config yanglint/bad-data.xml -f json interfaces.yang</b>
+err : Value "300.1.1.1" does not satisfy the constraint "(([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])" (range, length, or pattern). (/interfaces:interfaces/interface[name='eth']/ipv4-address)
 </pre>
 
 ## References
