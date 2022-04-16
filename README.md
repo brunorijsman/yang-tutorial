@@ -59,7 +59,10 @@ formats such as a text summary, an HTML summary, a UML diagram, etc.
 
 Open source:
 * [Pyang](docs/pyang.md)
-* [Yanglint](https://www.mankier.com/1/yanglint) (TODO)
+* [Yanglint](docs/yanglint.md)
+
+Online:
+* [YANG Validator](https://yangcatalog.org/yangvalidator) (TODO)
 
 Commercial:
 * [MG-SOFT YANG Explorer Professional Edition](https://www.mg-soft.si/mgYangExplorer.html) (TODO)
@@ -125,3 +128,8 @@ manage YANG data models.
 Commercial:
 * [MG-SOFT Visual YANG Designer Professional Edition](https://www.mg-soft.si/mgYangDesigner.html) (TODO)
 
+# Other
+
+I still have to look at the following tools and classify them:
+
+* [YANG Development Kit](https://ydkgen.readthedocs.io/en/latest/index.html) (TODO)
