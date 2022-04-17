@@ -106,9 +106,9 @@ Open source:
 * [Sysrepo](https://github.com/sysrepo/sysrepo) (TODO)
 
 Commercial:
-* [Cisco Tail-f ConfD](docs/confd.md)
+* [Cisco Tail-f ConfD](docs/confd.md) (TODO)
 * [MG-SOFT NETCONF Simulator](https://www.mg-soft.si/mgNetConfSimulator.html) (TODO)
-* [YumaWorks YumaPro](docs/yumapro.md)
+* [YumaWorks YumaPro](docs/yumapro.md) (TODO)
 
 # YANG client libraries
 
@@ -118,7 +118,7 @@ that provide NETCONF and/or RESTCONF client functionality to software developers
 Open source:
 * [Libyang](https://netopeer.liberouter.org/doc/libyang/devel/html/) (C) (TODO)
 * [Ncclient](docs/ncclient.md) (Python)
-* [Yangson](https://yangson.labs.nic.cz/) (Python)
+* [Yangson](https://yangson.labs.nic.cz/) (Python) (TODO)
 
 Commercial:
 * [MG-SOFT NETCONF/YANG Python Scripting System](https://www.mg-soft.si/mgNetConfScripting.html) (TODO)
