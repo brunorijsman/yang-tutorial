@@ -86,7 +86,7 @@ formats:
 
 <pre>
 $ <b>pyang --help</b>
-Usage: pyang [options] [<filename>...]
+Usage: pyang [options] [&lt;filename&gt;...]
 
 Validates the YANG module in &lt;filename&gt; (or stdin), and all its dependencies.
 
