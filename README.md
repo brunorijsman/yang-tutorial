@@ -46,9 +46,13 @@ For a list of links to standards and tutorials related to YANG, NETCONF, RESTCON
 
 # Getting started
 
-[Setting up the environment for this tutorial](docs/tutorial-install.md)
+This tutorial is written in such a way that you can follow along and run each example yourself.
+For instructions on how to go to install the necessary software see the 
+[setting up the environment for this tutorial](docs/tutorial-install.md) page.
 
-[An example YANG data model](docs/example-yang-data-model.md)
+Throughout this tutorial we will be using a simple example YANG data model called
+`interfaces.yang` which is described in detail in the
+[an example YANG data model](docs/example-yang-data-model.md) page.
 
 # YANG data model visualization, validation and transformation tools
 
