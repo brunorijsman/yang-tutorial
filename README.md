@@ -81,10 +81,10 @@ These tools provide a graphical user interface that allow you to:
 
 Commercial:
 * [MG-SOFT NetConf Browser Professional Edition](docs/mg-soft-browser.md)
-* [YumaBench from YumaWorks](docs/yumabench.md)
+* [YumaWorks YumaBench](docs/yumabench.md)
 
 Open source / commercial:
-* [YANG Suite from Cisco](docs/yang-suite.md)
+* [Cisco Tail-f YANG Suite](docs/yang-suite.md)
 
 # YANG servers
 
@@ -106,9 +106,9 @@ Open source:
 * [Sysrepo](https://github.com/sysrepo/sysrepo) (TODO)
 
 Commercial:
-* [CONFD from Tail-F (a Cisco company)](docs/confd.md)
+* [Cisco Tail-f ConfD](docs/confd.md)
 * [MG-SOFT NETCONF Simulator](https://www.mg-soft.si/mgNetConfSimulator.html) (TODO)
-* [YumaPro from YumaWorks](docs/yumapro.md)
+* [YumaWorks YumaPro](docs/yumapro.md)
 
 # YANG client libraries
 
