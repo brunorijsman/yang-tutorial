@@ -1,4 +1,4 @@
-# Pyang: validating and converting YANG data models
+# Pyang
 
 ## Introduction
 

@@ -1,4 +1,4 @@
-# Yanglint: validating YANG data models
+# Yanglint
 
 ## Introduction
 
@@ -39,12 +39,12 @@ All good
 </pre>
 
 Validate YANG data model `bad-interfaces.yang` to see an example of the error messages produced
-by `yanglint`:
+by `yanglint` (note hat unlike `pyang`, `yanglint` stops after the first error).
 
 <pre>
 $ <b>yanglint bad-interfaces.yang</b>
 err : Invalid keyword "organisation".
-err : Module "interfaces" parsing failed.
+err : Module "bad-interfaces" parsing failed.
 </pre>
 
 
