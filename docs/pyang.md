@@ -88,7 +88,7 @@ formats:
 $ <b>pyang --help</b>
 Usage: pyang [options] [<filename>...]
 
-Validates the YANG module in <filename> (or stdin), and all its dependencies.
+Validates the YANG module in &lt;filename&gt; (or stdin), and all its dependencies.
 
 Options:
   -h, --help            Show this help message and exit
