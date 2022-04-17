@@ -1,4 +1,6 @@
-# Standards
+# References
+
+## Standards
 
 ### YANG
 
@@ -29,6 +31,6 @@ TODO
 
 TODO
 
-# Tutorials
+## Tutorials
 
 * [Learn YANG - Full Tutorial for Beginners (Ultra Config)](https://ultraconfig.com.au/blog/learn-yang-full-tutorial-for-beginners/)

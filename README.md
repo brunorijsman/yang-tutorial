@@ -4,10 +4,10 @@
 
 # Introduction
 
-This is a hands-on tutorial of the YANG ecosystem.
+This is a hands-on tutorial for the YANG ecosystem.
 
 YANG is a data modeling language that is used for managing devices.
-YANG is quite popular for managing networking devices such as routers, switches, firewalls,
+It is quite popular for managing networking devices such as routers, switches, firewalls,
 load balancers, etc.
 But in principle, YANG could be used to manage any device such as
 washing machines, satellites, robots, storage arrays, whatever.
@@ -19,16 +19,14 @@ An operational attribute is an attribute that can only be read by the operator, 
 remaining time for the cycle of a washing machine.
 
 The YANG data model is used to generate a management interface for the device.
-
 One example of such a management interface is the command line interface (CLI) which is a
 an interface intended for humans to configure and monitor the device.
-
 Other examples of management interfaces are NETCONF and RESTCONF. These are intended to be used
 by network management systems (NMSs) or software defined networking (SDN) controllers to configure
 and monitor the device.
 
 In this tutorial we won't spend much time on the theory of what YANG, CLI, NETCONF, or RESTCONF
-are. (There are some references at the end of this page.)
+are (see the [references](docs/references.md) page for some pointers).
 Instead, we will take a very hands-on approach and dive right in. We will define a toy YANG
 data model for a router; it models only the IPv4 addresses on a set of interfaces.
 
