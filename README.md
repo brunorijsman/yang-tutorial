@@ -26,7 +26,7 @@ by network management systems (NMSs) or software defined networking (SDN) contro
 and monitor the device.
 
 In this tutorial we won't spend much time on the theory of what YANG, CLI, NETCONF, or RESTCONF
-are (see the [references](docs/references.md) page for some pointers).
+are.
 Instead, we will take a very hands-on approach and dive right in. We will define a toy YANG
 data model for a router; it models only the IPv4 addresses on a set of interfaces.
 
@@ -41,8 +41,8 @@ code.
 We take a very hands-on approach for each tool that we explore: we explain how to install the tool
 and how to use it to do something practically useful.
 
-For a list of standards related to YANG, NETCONF, RESTCONF, etc. see the 
-[standards page](docs/standards.md).
+For a list of links to standards and tutorials related to YANG, NETCONF, RESTCONF, etc. see the 
+[references page](docs/references.md).
 
 # Getting started
 
