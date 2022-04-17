@@ -1,22 +1,19 @@
 # Yanglint: validating YANG data models
 
-
-
 ## Introduction
 
 [Yanglint](https://www.mankier.com/1/yanglint)
-is command-line tool for validating and converting YANG schemas and the YANG modeled data.
+is command-line tool for validating and converting YANG schemas and YANG modeled data.
 It is part of the [libyang](https://github.com/CESNET/libyang) open source project and
 implemented in C.
 
 ## Install Yanglint
 
-To install `yanglint` on Ubuntu:
+Install `yang-tools` (which includes `yanglint`). On Ubuntu this can be done as follows:
 
 <pre>
 $ <b>sudo apt install -y yang-tools</b>
 </pre>
-
 
 Verify that `yanglint` is properly installed:
 
@@ -41,12 +38,11 @@ $ <b>if yanglint interfaces.yang; then echo "All good"; else "There are errors";
 All good
 </pre>
 
-Just to see what happens if there is an error, edit the YANG file and change the word
-`organization` to its British spelling `organisation`
-(don't forget to change it back afterwards):
+Validate YANG data model `bad-interfaces.yang` to see an example of the error messages produced
+by `yanglint`:
 
 <pre>
-$ <b>yanglint interfaces.yang</b>
+$ <b>yanglint bad-interfaces.yang</b>
 err : Invalid keyword "organisation".
 err : Module "interfaces" parsing failed.
 </pre>
