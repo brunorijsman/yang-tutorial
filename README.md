@@ -52,7 +52,7 @@ For instructions on how to go to install the necessary software see the
 
 Throughout this tutorial we will be using a simple example YANG data model called
 `interfaces.yang` which is described in detail in the
-[an example YANG data model](docs/example-yang-data-model.md) page.
+[example YANG data model](docs/example-yang-data-model.md) page.
 
 # YANG data model visualization, validation and transformation tools
 
