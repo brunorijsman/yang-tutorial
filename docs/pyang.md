@@ -8,7 +8,7 @@ code generator, written in Python.
 ## Install Pyang
 
 If you haven't already done so, follow the instructions for
-[setting up the environment for this tutorial](docs/tutorial-install.md) page.
+[setting up the environment for this tutorial](tutorial-install.md) page.
 
 Make sure your Python virtual environment is active:
 
