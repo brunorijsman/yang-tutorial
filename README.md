@@ -64,7 +64,7 @@ Open source:
 * [Yanglint](docs/yanglint.md)
 
 Online:
-* [YANG Validator](https://yangcatalog.org/yangvalidator)
+* [YANG Validator](docs/yang-validator.md)
 
 Commercial:
 * [MG-SOFT YANG Explorer Professional Edition](https://www.mg-soft.si/mgYangExplorer.html) (TODO)
