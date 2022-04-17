@@ -8,12 +8,9 @@ code generator, written in Python.
 ## Install Pyang
 
 If you haven't already done so, follow the instructions for
-[cloning and setting up this repository](#cloning-and-setting-up-this-repository)
-and the instructions for
-[setting up a python virtual environment](#setting-up-a-python-virtual-environment).
+[setting up the environment for this tutorial](docs/tutorial-install.md) page.
 
-If you already did these installation steps previously, don't forget to reactivate your Python
-virtual environment if it isn't already active:
+Make sure your Python virtual environment is active:
 
 <pre>
 $ <b>cd ~/yang-tutorial</b>
@@ -21,10 +18,7 @@ $ <b>source venv/bin/activate</b>
 (env) $
 </pre>
 
-If you followed the above installation instructions, the `pyang` Python package was already
-installed as part of installing the Python dependencies.
-
-If for some reason you want to install `pyang` separately, use the following command:
+Install `pyang` into your virtual environment:
 
 <pre>
 $ <b>pip install pyang</b>
@@ -42,7 +36,6 @@ This requires [PlantUML](https://plantuml.com/) to be installed:
 
 <pre>
 $ <b>sudo apt install -y plantuml</b>
-[...]
 </pre>
 
 ## Pyang: Validating a YANG data model
@@ -61,13 +54,13 @@ $ <b>if pyang interfaces.yang; then echo "All good"; else "There are errors"; fi
 All good
 </pre>
 
-Just to see what happens if there is an error, edit the YANG file and change the word
-`organization` to its British spelling `organisation`
-(don't forget to change it back afterwards):
+Validate YANG data model `bad-interfaces.yang` to see an example of the error messages produced
+by `pyang`:
 
 <pre>
-$ <b>pyang interfaces.yang</b>
-interfaces.yang:7: error: unexpected keyword "organisation"
+$ <b>pyang bad-interfaces.yang</b>
+bad-interfaces.yang:7: error: unexpected keyword "organisation"
+bad-interfaces.yang:47: error: type "uint46" not found in module "bad-interfaces"
 </pre>
 
 ## Pyang: Converting a YANG data model
