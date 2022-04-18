@@ -1,4 +1,4 @@
-# YumaBench from YumaWorks
+# YumaWorks YumaBench
 
 ## Introduction
 

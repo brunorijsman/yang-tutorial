@@ -1,4 +1,4 @@
-# Clixon: an open source NETCONF server
+# Clixon
 
 ## Introduction
 

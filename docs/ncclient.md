@@ -1,4 +1,4 @@
-# Ncclient: an open source Python NETCONF client module
+# Ncclient
 
 ## Introduction
 
