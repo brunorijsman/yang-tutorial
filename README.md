@@ -80,8 +80,8 @@ These tools provide a graphical user interface that allow you to:
    store, edit the contents of the data store, and invoke YANG actions.
 
 Commercial:
-* [MG-SOFT NetConf Browser Professional Edition](docs/mg-soft-browser.md)
-* [YumaWorks YumaBench](docs/yumabench.md)
+* [MG-SOFT NetConf Browser Professional Edition](docs/mg-soft-browser.md) (IN PROGRESS)
+* [YumaWorks YumaBench](docs/yumabench.md) (IN PROGRESS)
 
 Open source / commercial:
 * [Cisco Tail-f YANG Suite](docs/yang-suite.md)
