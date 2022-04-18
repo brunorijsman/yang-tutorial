@@ -14,93 +14,87 @@ environment (IDE).
 You can download the MG-SOFT Visual YANG Designer Professional Edition from the 
 [download page](https://www.mg-soft.si/download.html?product=yangdesigner&os=java)
 on the MG-SOFT website.
-The explorer is available for Windows, macOS, and several flavors of Linux.
+The designer is available for Windows, macOS, and several flavors of Linux.
 In this tutorial I use the macOS version.
 
-To do anything interesting with the MG-SOFT YANG Explorer, you will need to apply a license key.
+To do anything interesting with the MG-SOFT Visual YANG Designer, you will need to apply a license key.
 You can [purchase a license online](https://www.mg-soft.si/mgYangDesigner-ordering.html)
 or you can [request a 30-day evaluation license online](https://www.mg-soft.si/evalKeyReq.html).
+The evaluation license does not allow you to save YANG files.
 Note: I am not affiliated with MG-SOFT in any way and I don't get any commission.
-
-
-
 
 ## Start
 
-Double click on the MG-SOFT YANG Explorer icon in the applications folder.
+Double click on the MG-SOFT Visual YANG Designer icon in the applications folder.
 
-![MG-SOFT YANG Explorer icon](figures/mgsoft-yang-explorer-icon.png)
+![MG-SOFT Visual YANG Designer icon](figures/mgsoft-yang-designer-icon.png)
 
-When you start the MG-SOFT YANG Explorer for the first time, it will give you the opportunity
+When you start the MG-SOFT Visual YANG Designer for the first time, it will give you the opportunity
 to install the evaluation license
 (you can also do this later using the Help → Apply License Key... menu item.)
 
-![MG-SOFT YANG Explorer first time startup screen](figures/mgsoft-yang-explorer-first-time.png)
+![MG-SOFT Visual YANG Designer first time startup screen](figures/mgsoft-yang-designer-first-time.png)
 
-After installing the license key, you end up in the following screen.
-On the left side you see a list of standard IETF YANG data models that come bundled with the
-MG-SOFT YANG Explorer.
+## Create a new project
 
-![MG-SOFT YANG Explorer startup screen](figures/mgsoft-yang-explorer-startup.png)
+After MG-SOFT Visual YANG Designer has been started, choose the Create a new project option:
 
-# Load a YANG data model
+![MG-SOFT Visual YANG Designer create a new project](figures/mgsoft-yang-designer-create-new-project.png)
 
-The first thing we have to do is to load our `interfaces.yang` YANG data model into the
-MG-SOFT YANG Explorer.
-Select the Module → Load Module... menu item, and open the `interfaces.yang` file in this
-repository.
+and enter the details for the newly created project:
 
-![MG-SOFT YANG Explorer - choose YANG module](figures/mgsoft-yang-explorer-choose-yang-file.png)
+![MG-SOFT Visual YANG Designer project details part one](figures/mgsoft-yang-designer-project-details.png)
 
-# Explore a YANG data model
+![MG-SOFT Visual YANG Designer project details part two](figures/mgsoft-yang-designer-project-details-2.png)
 
-The `interfaces` YANG module appears in the left pane; when you click on it, you get the details.
+## Create a new module
 
-![MG-SOFT YANG Explorer - interfaces model details](figures/mgsoft-yang-explorer-interface-model-details.png)
+Click on the new module button:
 
-You can click on the triangle next to the `interfaces` YANG module to expand it one level,
-or you can right-click on the module and select Expand Entire Subtree:
+![MG-SOFT Visual YANG Designer new module button](figures/mgsoft-yang-designer-new-module-button.png)
 
-![MG-SOFT YANG Explorer - interfaces model expanded subtree](figures/mgsoft-yang-explorer-interface-model-expanded-subtree.png)
+and enter the details for the newly created module:
 
-While in the tree pane, you can use menu item Edit → Find Nodes... (⌘F) to search for specific nodes.
-In the following screenshot we search for all leaf nodes that contain the word address:
+![MG-SOFT Visual YANG Designer module details](figures/mgsoft-yang-designer-module-details.png)
 
-![MG-SOFT YANG Explorer - find nodes](figures/mgsoft-yang-explorer-find-nodes.png)
+The newly created empty module is displayed:
 
-Clicking the <button>Textual Tree Diagram</button> tab displays the textual tree diagram:
+![MG-SOFT Visual YANG Designer empty module](figures/mgsoft-yang-designer-empty-module.png)
 
-![MG-SOFT YANG Explorer - interfaces model text tree](figures/mgsoft-yang-explorer-interface-model-text-tree.png)
+## Add components to the module
 
-Clicking the <button>Source File</button> tab displays the source code for the YANG data model:
+In the left Project panel click on the <button>Components</button> tab:
 
-![MG-SOFT YANG Explorer - interfaces model source](figures/mgsoft-yang-explorer-interface-model-source.png)
+![MG-SOFT Visual YANG Designer components tab](figures/mgsoft-yang-designer-components-tab.png)
 
-Our `interfaces` example YANG module is very simple and doesn't import any other modules,
-but most real-life modules do.
-The following screenshot shows the standard IETF YANG module `ietf-ipv6-unicast-routing`.
-On line 15 it imports another YANG module `ietf-inet-types`.
-You can right-click on the `import` statement and select Show in YANG Tree to navigate to the
-imported module
+Drag and drop components from the left Project panel to the middle YANG Tree Preview panel. 
+As you are dropping the component into the middle YANG Tree Preview panel,
+you will see gray lines to indicate where the component is allowed to be dropped.
+After a component has been dropped in place, you can enter details for component in the top
+right Node Editor panel (in the screenshot below we are entering details for a newly added `burners`
+container).
+In the bottom right Source panel you can see and edit the source code for the YANG data model as
+it is being constructed.
 
-![MG-SOFT YANG Explorer - show in YANG tree](figures/mgsoft-yang-explorer-show-in-yang-tree.png)
+![MG-SOFT Visual YANG Designer edit module](figures/mgsoft-yang-designer-edit-module.png)
 
-## View UML diagram
+## View the module source
 
-Select menu item View → UML Class Diagram... and click on the 🔧 icon to select a YANG data model
-and displays its UML class diagram:
+Click on the <button>Source</button> to see and edit the source code of the YANG data model in a
+larger Source panel in the top right:
 
-![MG-SOFT YANG Explorer - UML class diagram](figures/mgsoft-yang-explorer-uml-class-diagram.png)
+![MG-SOFT Visual YANG Designer source code](figures/mgsoft-yang-designer-source-code.png)
 
-## View dependencies
+## View errors
 
-Select menu item View → YANG Dependencies... and click on the 🔧 icon to select a YANG data model
-and displays its YANG dependencies:
+If there are any errors in your YANG data models, you can see them in the
+<button>Validation Messages</button> tab in the bottom-right panel, and the offending lines
+are marked with a red exclamation mark in the source code:
 
-![MG-SOFT YANG Explorer - dependencies](figures/mgsoft-yang-explorer-dependencies.png)
+![MG-SOFT Visual YANG Designer errors](figures/mgsoft-yang-designer-errors.png)
 
 ## References
 
 * [The MG-SOFT company homepage](https://www.mg-soft.si/)
 
-* [The MG-SOFT YANG Explorer Professional Edition product page](https://www.mg-soft.si/mgYangExplorer.html)
+* [The MG-SOFT Visual YANG Designer Professional Edition product page](https://www.mg-soft.si/mgYangDesigner.html)

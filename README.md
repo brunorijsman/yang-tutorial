@@ -126,7 +126,7 @@ YANG authoring tools provide an integrated development environment (IDE) that he
 manage YANG data models.
 
 Commercial:
-* [MG-SOFT Visual YANG Designer Professional Edition](docs/mg-soft-designer.md) (IN PROGRESS)
+* [MG-SOFT Visual YANG Designer Professional Edition](docs/mg-soft-designer.md)
 
 # Other
 
