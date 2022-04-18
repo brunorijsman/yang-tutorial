@@ -83,9 +83,6 @@ Commercial:
 * [MG-SOFT NetConf Browser Professional Edition](docs/mg-soft-browser.md) (IN PROGRESS)
 * [YumaWorks YumaBench](docs/yumabench.md) (IN PROGRESS)
 
-Open source / commercial:
-* [Cisco Tail-f YANG Suite](docs/yang-suite.md)
-
 # YANG servers
 
 A YANG server (also known as a YANG backend server or a NETCONF server or a RESTCONF server):
@@ -136,3 +133,5 @@ Commercial:
 I still have to look at the following tools and classify them:
 
 * [YANG Development Kit](https://ydkgen.readthedocs.io/en/latest/index.html) (TODO)
+* [Cisco Tail-f YANG Suite](https://developer.cisco.com/yangsuite/)
+
