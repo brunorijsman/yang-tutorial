@@ -101,7 +101,7 @@ A YANG server (also known as a YANG backend server or a NETCONF server or a REST
   * SNMP
 
 Open source:
-* [Clixon](docs/clixon.md)
+* [Clixon](docs/clixon.md) (IN PROGRESS)
 * [Netopeer2](https://github.com/CESNET/netopeer2) (TODO)
 * [Sysrepo](https://github.com/sysrepo/sysrepo) (TODO)
 
