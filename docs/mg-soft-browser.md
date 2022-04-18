@@ -9,7 +9,7 @@ One of their products, the
 is a client that can connect to a NETCONF or RESTCONF server and that offers a graphical user 
 interface for exploring and editing the data store in the server.
 
-## Download and install MG-SOFT NetConf Browser Professional Edition
+## Download and install
 
 You can download the MG-SOFT NetConf Browser Professional Edition from the 
 [download page](https://www.mg-soft.si/download.html?product=netconfbrowser)
@@ -62,7 +62,7 @@ After installing the license key, you end up in the following screen:
 
 ![MG-SOFT NetConf Browser startup screen](figures/mgsoft-netconf-browser-startup.png)
 
-# Load the YANG data model into MG-SOFT NetConf Browser
+# Load the YANG data model
 
 The first thing we have to do is to load our `interfaces.yang` YANG data model into the
 MG-SOFT NetConf Browser.
