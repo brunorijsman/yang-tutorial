@@ -1,16 +1,20 @@
-# MG-SOFT YANG Explorer Professional Edition
+# MG-SOFT Visual YANG Designer Professional Edition
 
 ## Introduction
 
 [MG-SOFT](https://www.mg-soft.si/) is a company that offers a suite of network management related
 products.
 One of their products, the
-[MG-SOFT YANG Explorer Professional Edition](https://www.mg-soft.si/mgYangExplorer.html)
-allows you to explore, validate, and convert YANG data models.
+[MG-SOFT Visual YANG Designer Professional Edition]https://www.mg-soft.si/mgYangDesigner.html)
+is a YANG authoring tool that allows you to edit YANG data models in an integrated development
+environment (IDE).
 
-## Download and install the MG-SOFT YANG Explorer
 
-You can download the MG-SOFT YANG Explorer from the 
+
+
+## Download and install MG-SOFT Visual YANG Designer
+
+You can download the MG-SOFT YANG Explorer Professional Edition from the 
 [download page](https://www.mg-soft.si/download.html?product=yangexplorer&os=java)
 on the MG-SOFT website.
 The explorer is available for Windows, macOS, and several flavors of Linux.
