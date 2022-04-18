@@ -5,27 +5,27 @@
 [MG-SOFT](https://www.mg-soft.si/) is a company that offers a suite of network management related
 products.
 One of their products, the
-[MG-SOFT Visual YANG Designer Professional Edition]https://www.mg-soft.si/mgYangDesigner.html)
+[MG-SOFT Visual YANG Designer Professional Edition](https://www.mg-soft.si/mgYangDesigner.html)
 is a YANG authoring tool that allows you to edit YANG data models in an integrated development
 environment (IDE).
 
+## Download and install
 
-
-
-## Download and install MG-SOFT Visual YANG Designer
-
-You can download the MG-SOFT YANG Explorer Professional Edition from the 
-[download page](https://www.mg-soft.si/download.html?product=yangexplorer&os=java)
+You can download the MG-SOFT Visual YANG Designer Professional Edition from the 
+[download page](https://www.mg-soft.si/download.html?product=yangdesigner&os=java)
 on the MG-SOFT website.
 The explorer is available for Windows, macOS, and several flavors of Linux.
 In this tutorial I use the macOS version.
 
 To do anything interesting with the MG-SOFT YANG Explorer, you will need to apply a license key.
-You can [purchase a license online](https://www.mg-soft.si/mgYangExplorer-ordering.html)
+You can [purchase a license online](https://www.mg-soft.si/mgYangDesigner-ordering.html)
 or you can [request a 30-day evaluation license online](https://www.mg-soft.si/evalKeyReq.html).
 Note: I am not affiliated with MG-SOFT in any way and I don't get any commission.
 
-## Start the MG-SOFT YANG Explorer
+
+
+
+## Start
 
 Double click on the MG-SOFT YANG Explorer icon in the applications folder.
 
