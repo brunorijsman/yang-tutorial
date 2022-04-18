@@ -67,7 +67,7 @@ Online:
 * [YANG Validator](docs/yang-validator.md)
 
 Commercial:
-* [MG-SOFT YANG Explorer Professional Edition](https://www.mg-soft.si/mgYangExplorer.html) (TODO)
+* [MG-SOFT YANG Explorer Professional Edition](docs/mg-soft-explorer.md)
 * [YumaWorks yangdump-pro](https://www.yumaworks.com/pub/docs/latest/html/yangdump/yumapro-yangdump-manual.xhtml) (TODO)
 
 # Graphical YANG browsers
