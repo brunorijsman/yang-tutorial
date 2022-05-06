@@ -6,12 +6,16 @@
         "cvec",
         "cxobj",
         "dvec",
+        "dylib",
         "ELMNT",
         "euid",
         "jstree",
         "Libyang",
+        "libyumapro",
         "Ncclient",
         "NETCONF",
+        "netconfcentral",
+        "netconfd",
         "NETMOD",
         "Netopeer",
         "nsctx",
@@ -25,9 +29,12 @@
         "Sysrepo",
         "tcvec",
         "venv",
+        "yangcli",
         "yangdump",
         "Yanglint",
         "Yangson",
-        "yumabench"
+        "ycli",
+        "yumabench",
+        "yumapro"
     ]
 }

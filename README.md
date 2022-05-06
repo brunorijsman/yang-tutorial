@@ -68,7 +68,7 @@ Online:
 
 Commercial:
 * [MG-SOFT YANG Explorer Professional Edition](docs/mg-soft-explorer.md)
-* [YumaWorks yangdump-pro](https://www.yumaworks.com/pub/docs/latest/html/yangdump/yumapro-yangdump-manual.xhtml) (TODO)
+* [YumaWorks YumaPro Client](docs/yuma-pro-client.md)
 
 # Graphical YANG browsers
 
