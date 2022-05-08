@@ -6,6 +6,7 @@
         "cvec",
         "cxobj",
         "dvec",
+        "dyld",
         "dylib",
         "ELMNT",
         "euid",
