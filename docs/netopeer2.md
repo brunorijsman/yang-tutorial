@@ -202,10 +202,21 @@ ietf-netconf-acm              | 2018-02-14 | I     | root:root     | 600        
 ...
 </pre>
 
+## Set a password for user `ubuntu`
 
-## Start the server
+Set the password for user `ubuntu` to `secret` to allows `netopeer2-cli` 
+(the NETCONF client) to use password authentication (for now) when connecting to
+`netopeer2-server` (the NETCONF server):
 
-Start the `netopeer2` server as a daemon:
+<pre>
+$ <b>sudo passwd ubuntu</b>
+New password: <b>secret</b>
+Retype new password: <b>secret</b>
+</pre>
+
+## Start the NETCONF server
+
+Start the `netopeer2-server` NETCONF server as a daemon:
 
 <pre>
 $ <b>cd ~</b>
@@ -222,6 +233,104 @@ ubuntu     18144  0.0  0.0   7008  2120 pts/0    S+   10:55   0:00 grep --color=
 </pre>
 
 
+## Start the NETCONF client
+
+Start the `netopeer2-cli` NETCONF client:
+
+<pre>
+$ <b>cd ~</b>
+$ <b>netopeer2-client</b>
+&gt;
+</pre>
+
+Enter `help` to see the list of client commands:
+
+<pre>
+&gt; <b>help</b>
+Available commands:
+  auth            Manage SSH authentication options
+  knownhosts      Manage the user knownhosts file
+  ...
+  exit            Quit the program
+&gt;
+</pre>
+
+Connect the client to the server (running on the same host)
+
+<pre>
+&gt; <b>connect</b>
+Interactive SSH Authentication
+Type your password:
+Password: <b>secret</b>
+&gt;
+</pre>
+
+Retrieve the running configuration:
+
+<pre>
+&gt; <b>get-config --source running</b>
+</pre>
+```
+DATA
+<data xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+  <keystore xmlns="urn:ietf:params:xml:ns:yang:ietf-keystore">
+    <asymmetric-keys>
+      <asymmetric-key>
+        <name>genkey</name>
+        <algorithm>rsa2048</algorithm>
+        <public-key>MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAqIbDXmMsEeQKJhOP9gn4IIO/MwijcOpB9AxjYdMa/WEYjacNXOWAzFHsO8OuYi8gYGo69M+2XtdF4xid3hoE9HPlE3/tOnMA7UBbtbPoYSKei5wN8zobUmtbwJyRHJciyShDKUS8zxM+2P1FoqjIzg0Il3ELfUnxmWoCvDOz1ekkRISuKxDTz2PLnPEqr2HyuBxkMBBRudxfkSfFSQhB7rjPg0UolGOUP+ffOTJuWeodYNnX9NXPc/kKnTNhD2423pANGjFJbM56H6GUpBIDpzuTo6+ds+NcZgYJazk1OiIXpEqLadgVa4nxe/BtbUZYvIccMNbxP4nl6QukjU/74QIDAQAB</public-key>
+      </asymmetric-key>
+    </asymmetric-keys>
+  </keystore>
+  <netconf-server xmlns="urn:ietf:params:xml:ns:yang:ietf-netconf-server">
+    <listen>
+      <endpoint>
+        <name>default-ssh</name>
+        <ssh>
+          <tcp-server-parameters>
+            <local-address>0.0.0.0</local-address>
+            <keepalives>
+              <idle-time>1</idle-time>
+              <max-probes>10</max-probes>
+              <probe-interval>5</probe-interval>
+            </keepalives>
+          </tcp-server-parameters>
+          <ssh-server-parameters>
+            <server-identity>
+              <host-key>
+                <name>default-key</name>
+                <public-key>
+                  <keystore-reference>genkey</keystore-reference>
+                </public-key>
+              </host-key>
+            </server-identity>
+            <client-authentication>
+              <supported-authentication-methods>
+                <publickey/>
+                <passsword/>
+                <other>interactive</other>
+              </supported-authentication-methods>
+            </client-authentication>
+          </ssh-server-parameters>
+        </ssh>
+      </endpoint>
+    </listen>
+  </netconf-server>
+</data>
+```
+
+
+## TODO
+
+* Certificate-based authentication
+
+* The fancier NETCONF command-line client
+
+* The NETCONF client GUI
+
+* Loading our own YANG data model
+
+* Implementing the back-end for our own YANG data model
 
 ## References
 

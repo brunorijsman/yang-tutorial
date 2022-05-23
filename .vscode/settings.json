@@ -12,6 +12,7 @@
         "ELMNT",
         "euid",
         "jstree",
+        "knownhosts",
         "ldconfig",
         "libcmocka",
         "libnetconf",
