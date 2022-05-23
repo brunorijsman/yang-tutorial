@@ -155,7 +155,82 @@ $ <b>sudo ldconfig</b>
 $ <b>sudo make install</b>
 </pre>
 
+## Verify installation
+
+Verify that `netopeer2-server` has been installed:
+
+<pre>
+$ <b>netopeer2-server -V</b>
+netopeer2-server 2.1.23
+</pre>
+
+Verify that `netopeer2-cli` has been installed. Type `exit` to return to the shell.
+
+<pre>
+$ <b>netopeer2-cli</b>
+get_netconf_dir: Configuration directory "/home/ubuntu/.netopeer2-cli" did not exist, created.
+load_config: No saved history.
+load_config: No saved configuration.
+&gt; <b>exit</b>
+$s
+</pre>
+
+Note: manual pages are available for `netopeer2-server` and `netopeer2-cli`:
+
+<pre>
+$ <b>man netopeer2-server</b>
+$ <b>man netopeer2-cli</b>
+</pre>
+
+Verify that `sysrepo` has been installed:
+
+<pre>
+$ <b>sudo sysrepoctl -l</b>
+Sysrepo repository: /home/ubuntu/sysrepo/build/repository
+
+Module Name                   | Revision   | Flags | Owner         | Startup Perms | Submodules | Features                                                                                
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+iana-crypt-hash               | 2014-08-06 | i     |               |               |            |                                                                                         
+ietf-crypto-types             | 2019-07-02 | I     | ubuntu:ubuntu | 600           |            |                                                                                         
+ietf-datastores               | 2018-02-14 | I     | root:root     | 444           |            |                                                                                         
+ietf-inet-types               | 2013-07-15 | i     |               |               |            |                                                                                         
+ietf-interfaces               | 2018-02-20 | I     | ubuntu:ubuntu | 600           |            |                                                                                         
+ietf-ip                       | 2018-02-22 | I     | ubuntu:ubuntu | 600           |            |                                                                                         
+ietf-keystore                 | 2019-07-02 | I     | ubuntu:ubuntu | 600           |            | keystore-supported                                                                      
+ietf-netconf                  | 2013-09-29 | I     | ubuntu:ubuntu | 600           |            | writable-running candidate confirmed-commit rollback-on-error validate startup url xpath
+ietf-netconf-acm              | 2018-02-14 | I     | root:root     | 600           |            |         
+...
+</pre>
+
+
+## Start the server
+
+Start the `netopeer2` server as a daemon:
+
+<pre>
+$ <b>cd ~</b>
+$ <b>sudo netopeer2-server</b>
+$
+</pre>
+
+Verify that the server is running:
+
+<pre>
+$ <b>ps aux | grep netopeer2-server</b>
+root       18132  0.1  0.1 337832  7372 ?        Ssl  10:54   0:00 netopeer2-server
+ubuntu     18144  0.0  0.0   7008  2120 pts/0    S+   10:55   0:00 grep --color=auto netopeer2-server
+</pre>
+
+
 
 ## References
 
-* [The netopeer2 GitHub repository](https://github.com/CESNET/netopeer2)
+* [Netopeer2 GitHub repo](https://github.com/CESNET/netopeer2)
+
+* [Libyang GitHub repo](https://github.com/CESNET/libyang.git)
+
+* [Libnetconf2 GitHub repo](https://github.com/CESNET/libnetconf2.git)
+
+* [Sysrepo homepage](https://www.sysrepo.org/)
+
+* [Sysrepo GitHub repo](https://github.com/sysrepo/sysrepo)
