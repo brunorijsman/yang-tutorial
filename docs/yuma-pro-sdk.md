@@ -268,9 +268,6 @@ Default with-defaults behavior: explicit
 Additional with-defaults behavior: trim,report-all,report-all-tagged
 YANG library set to: 1.0 (RFC 7895)
 module-set-id: 4269
-
-&gt;
-
 </pre>
 
 The client sends a `hello`:
