@@ -134,4 +134,6 @@ I still have to look at the following tools and classify them:
 
 * [YANG Development Kit](https://ydkgen.readthedocs.io/en/latest/index.html) (TODO)
 * [Cisco Tail-f YANG Suite](https://developer.cisco.com/yangsuite/)
+* [JetConf](https://github.com/CZ-NIC/jetconf)
+* https://github.com/choppsv1/netconf
 
