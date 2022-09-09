@@ -29,7 +29,7 @@ for details):
 
 In this tutorial we will be using the basic version.
 
-## Download and install
+## Download the YumaWorks software and documentation
 
 Download the YumaPro SDK Basic software and documentation from the
 [download page](https://www.yumaworks.com/support/download-yumapro-sdk-basic/)
@@ -41,6 +41,8 @@ license agreement does not appear when you scroll down to the bottom of the agre
 As of 8 September 2022, this downloads files 
 `yumapro-sdk-basic-21.10-8.u2004.amd64.deb` (the software) and
 `yumapro-doc_21.10-8_all.deb` (the documentation).
+
+## Install the software and documentation
 
 Follow the instructions on the
 [installation guide](https://www.yumaworks.com/pub/latest/install/yumapro-installation-guide.html)
@@ -135,13 +137,41 @@ Edit sshd_config, for example using `vi`:
 $ <b>sudo vi /etc/ssh/sshd_config</b>
 </pre>
 
-And add the following lines:
+The installation guide instructs you to add the following lines:
 
 <pre>
 Port 22
 Port 830
 Subsystem netconf /usr/sbin/netconf-subsystem-pro
 </pre>
+
+Using the following `Subsystem` configuration instead will allow you to view the XML messages that
+are exchanged over the SSH system (this cannot easily be done with normal packet capture tools such
+as Wireshark because they cannot easily decode the encrypted SSH session):
+
+<pre>
+Subsystem netconf "/bin/sh -c 'tee /tmp/netconf-rx.txt | /usr/sbin/netconf-subsystem-pro` | tee /tmp/netconf-tx.txt'"
+</pre>
+
+The NETCONF server will write all received XML messages to file `/tmp/netconf-rx.txt` and all
+sent XML messages to file `/tmp/netconf-tx.txt`.
+
+The `multitail` program is handy to monitor both files at the same time.
+
+Install `multitail`:
+
+<pre>
+$ <b>sudo apt-get install -y multitail</b>
+</pre>
+
+Monitor both files at the same time using different colors:
+
+<pre>
+$ <b></b>
+</pre>
+
+Press `F1` to get help on the interactive keys that multitail supports. Some handy keys are `B` to
+scroll back and `N` to clear the window.
 
 Generate SSH keys (accept defaults for all prompts):
 
@@ -177,7 +207,8 @@ $ <b>sudo service ssh restart</b>
 
 ## Start the server
 
-Start the `netconfd-pro` server:
+Start the `netconfd-pro` server (with maximum debug logging; use `debug` instead of `debug4` to
+reduce the verbosity):
 
 <pre>
 $ <b>netconfd-pro --log-level=debug4 --access-control=off</b>
@@ -215,6 +246,8 @@ $ <b>yangcli-pro</b>
 &gt;
 </pre>
 
+## Connect the CLI client to the NETCONF server
+
 Enter the following command in the CLI to connect to the server
 (use your Linux username and password, and put the password in quotes if it contains a question mark):
 
@@ -240,7 +273,166 @@ module-set-id: 4269
 
 </pre>
 
-Issue an `sget` command to retrieve operational state:
+The client sends a `hello`:
+
+```xml
+<hello xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+  <capabilities>
+    <capability>urn:ietf:params:netconf:base:1.0</capability>
+    <capability>urn:ietf:params:netconf:base:1.1</capability>
+  </capabilities>
+</hello>
+```
+
+Note: throughout these examples, we have used the `xmllint` program to pretty-print the XML in
+the NETCONF messages. One side-effect of this is that the XML elements and attributes may appear
+in a different order.
+
+The server responds with a `hello`:
+
+```xml
+<hello xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+  <capabilities>
+    <capability>urn:ietf:params:netconf:base:1.0</capability>
+    <capability>urn:ietf:params:netconf:base:1.1</capability>
+    <capability>urn:ietf:params:netconf:capability:candidate:1.0</capability>
+    <capability>urn:ietf:params:netconf:capability:confirmed-commit:1.0</capability>
+    <capability>urn:ietf:params:netconf:capability:confirmed-commit:1.1</capability>
+    <capability>urn:ietf:params:netconf:capability:rollback-on-error:1.0</capability>
+    <capability>urn:ietf:params:netconf:capability:validate:1.0</capability>
+    <capability>urn:ietf:params:netconf:capability:validate:1.1</capability>
+    <capability>urn:ietf:params:netconf:capability:url:1.0?scheme=file</capability>
+    <capability>urn:ietf:params:netconf:capability:xpath:1.0</capability>
+    <capability>urn:ietf:params:netconf:capability:notification:1.0</capability>
+    <capability>urn:ietf:params:netconf:capability:interleave:1.0</capability>
+    <capability>urn:ietf:params:netconf:capability:partial-lock:1.0</capability>
+    <capability>urn:ietf:params:netconf:capability:with-defaults:1.0?basic-mode=explicit&amp;also-supported=trim,report-all,report-all-tagged</capability>
+    <capability>urn:yumaworks:params:xml:ns:netconf:config-id?id=13</capability>
+    <capability>urn:ietf:params:xml:ns:netconf:base:1.0?module=ietf-netconf&amp;revision=2011-06-01&amp;features=candidate,confirmed-commit,rollback-on-error,validate,url,xpath</capability>
+    <capability>urn:ietf:params:xml:ns:yang:iana-crypt-hash?module=iana-crypt-hash&amp;revision=2014-08-06&amp;features=crypt-hash-md5,crypt-hash-sha-256,crypt-hash-sha-512</capability>
+    <capability>urn:ietf:params:xml:ns:yang:ietf-inet-types?module=ietf-inet-types&amp;revision=2013-07-15</capability>
+    <capability>urn:ietf:params:xml:ns:yang:ietf-netconf-acm?module=ietf-netconf-acm&amp;revision=2018-02-14</capability>
+    ...
+    <capability>http://yumaworks.com/ns/yumaworks-types?module=yumaworks-types&amp;revision=2021-05-15</capability>
+    <capability>urn:ietf:params:netconf:capability:yang-library:1.0?revision=2016-06-21&amp;module-set-id=4269</capability>
+  </capabilities>
+  <session-id>5</session-id>
+</hello>
+```
+
+The client issues a `get` filtering on subtree `ietf-yang-library`
+to retrieve the details of the modules that the server supports
+(see [RFC8525](https://datatracker.ietf.org/doc/rfc8525/) for details)
+(output truncated):
+
+```xml
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <get>
+    <filter type="subtree">
+      <modules-state xmlns="urn:ietf:params:xml:ns:yang:ietf-yang-library"/>
+    </filter>
+  </get>
+</rpc>
+```
+
+The server responds with the requested information (output truncated):
+
+```xml
+<rpc-reply xmlns:ncx="http://netconfcentral.org/ns/yuma-ncx" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1" ncx:last-modified="2022-09-09T15:04:23Z" ncx:etag="13">
+  <data>
+    <modules-state xmlns="urn:ietf:params:xml:ns:yang:ietf-yang-library">
+      <module-set-id>4269</module-set-id>
+      <module>
+        <name>ietf-netconf</name>
+        <revision>2011-06-01</revision>
+        <namespace>urn:ietf:params:xml:ns:netconf:base:1.0</namespace>
+        <feature>candidate</feature>
+        <feature>confirmed-commit</feature>
+        <feature>rollback-on-error</feature>
+        <feature>validate</feature>
+        <feature>url</feature>
+        <feature>xpath</feature>
+        <conformance-type>implement</conformance-type>
+      </module>
+      <module>
+        <name>iana-crypt-hash</name>
+        <revision>2014-08-06</revision>
+        <schema>http://localhost/restconf/yang/iana-crypt-hash/2014-08-06</schema>
+        <namespace>urn:ietf:params:xml:ns:yang:iana-crypt-hash</namespace>
+        <feature>crypt-hash-md5</feature>
+        <feature>crypt-hash-sha-256</feature>
+        <feature>crypt-hash-sha-512</feature>
+        <conformance-type>implement</conformance-type>
+      </module>
+      <module>
+        <name>ietf-inet-types</name>
+        <revision>2013-07-15</revision>
+        <schema>http://localhost/restconf/yang/ietf-inet-types/2013-07-15</schema>
+        <namespace>urn:ietf:params:xml:ns:yang:ietf-inet-types</namespace>
+        <conformance-type>import</conformance-type>
+      </module>
+      <module>
+        <name>ietf-netconf-acm</name>
+        <revision>2018-02-14</revision>
+        <schema>http://localhost/restconf/yang/ietf-netconf-acm/2018-02-14</schema>
+        <namespace>urn:ietf:params:xml:ns:yang:ietf-netconf-acm</namespace>
+        <conformance-type>implement</conformance-type>
+      </module>
+      ...
+      <module>
+        <name>yumaworks-types</name>
+        <revision>2021-05-15</revision>
+        <schema>http://localhost/restconf/yang/yumaworks-types/2021-05-15</schema>
+        <namespace>http://yumaworks.com/ns/yumaworks-types</namespace>
+        <conformance-type>import</conformance-type>
+      </module>
+    </modules-state>
+  </data>
+</rpc-reply>
+```
+
+## Retrieve the (empty) configuration
+
+In the CLI client, issue a `get-config` command to retrieve the running configuration:
+
+<pre>
+&gt; <b>get-config source=running</b>
+
+RPC Data Reply 10 for session 4 [default]: 
+
+rpc-reply {
+  data {
+  }
+}
+</pre>
+
+In this example, there is no configuration yet (we will add some configuration below).
+
+The client sends a `get-config`:
+
+```xml
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="2">
+  <get-config>
+    <source>
+      <running/>
+    </source>
+  </get-config>
+</rpc>
+```
+
+The server responds with the requested configuration:
+
+```xml
+<rpc-reply xmlns:ncx="http://netconfcentral.org/ns/yuma-ncx" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="2" ncx:last-modified="2022-09-09T15:04:23Z" ncx:etag="13">
+  <data/>
+</rpc-reply>
+```
+
+## Retrieve a subtree of the operational state
+
+In the CLI client, issue an `sget` command to retrieve operational state for the 
+`/netconf-state/sessions` subtree of the operational state tree (use `/` if you want to see the 
+whole tree):
 
 <pre>
 &gt; <b>sget /netconf-state/sessions</b>
@@ -267,14 +459,50 @@ rpc-reply {
     }
   }
 }
-
-&gt;
 </pre>
 
-Exit the CLI client:
+The client sends a `get` with the filter for the subtree:
+
+```xml
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="3">
+  <get>
+    <filter type="subtree">
+      <netconf-state xmlns="urn:ietf:params:xml:ns:yang:ietf-netconf-monitoring">
+        <sessions/>
+      </netconf-state>
+    </filter>
+  </get>
+</rpc>
+```
+
+The server responds with the requested operational state:
+
+```xml
+<rpc-reply xmlns:ncx="http://netconfcentral.org/ns/yuma-ncx" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="3" ncx:last-modified="2022-09-09T15:04:23Z" ncx:etag="13">
+  <data>
+    <netconf-state xmlns="urn:ietf:params:xml:ns:yang:ietf-netconf-monitoring">
+      <sessions>
+        <session>
+          <session-id>5</session-id>
+          <transport xmlns:ncm="urn:ietf:params:xml:ns:yang:ietf-netconf-monitoring">ncm:netconf-ssh</transport>
+          <username>parallels</username>
+          <source-host>127.0.0.1</source-host>
+          <login-time>2022-09-09T15:07:13Z</login-time>
+          <in-rpcs>2</in-rpcs>
+          <in-bad-rpcs>0</in-bad-rpcs>
+          <out-rpc-errors>0</out-rpc-errors>
+          <out-notifications>0</out-notifications>
+        </session>
+      </sessions>
+    </netconf-state>
+  </data>
+</rpc-reply>
+```
+
+## Exit from the CLI client
+
+Exit from the CLI client:
 
 <pre>
 &gt; <b>quit</b>
-
-$
 </pre>
