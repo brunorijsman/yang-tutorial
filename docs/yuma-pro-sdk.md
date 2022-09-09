@@ -537,6 +537,221 @@ The server responds with the requested operational state:
 </rpc-reply>
 ```
 
+## Retrieve the YANG schema for a module
+
+In the CLI client, issue the `get-schema` command to retrieve the YANG schema for a specific
+module from the server:
+
+<pre>
+&gt; <b>get-schema identifier=ietf-netconf-notifications</b>
+
+RPC Data Reply 10 for session 5 [default]: 
+
+rpc-reply {
+  data '
+module ietf-netconf-notifications {
+
+   namespace
+     "urn:ietf:params:xml:ns:yang:ietf-netconf-notifications";
+
+   prefix ncn;
+
+   import ietf-inet-types { prefix inet; }
+   import ietf-netconf { prefix nc; }
+
+   organization
+     "IETF NETCONF (Network Configuration Protocol) Working Group";
+
+   contact
+     "WG Web:   &lt;http://tools.ietf.org/wg/netconf/&gt;
+      WG List:  &lt;mailto:netconf@ietf.org&gt;
+
+      WG Chair: Bert Wijnen
+                &lt;mailto:bertietf@bwijnen.net&gt;
+
+      WG Chair: Mehmet Ersue
+                &lt;mailto:mehmet.ersue@nsn.com&gt;
+
+      Editor:   Andy Bierman
+                &lt;mailto:andy@netconfcentral.org&gt;";
+
+   description
+     "This module defines a YANG data model for use with the
+      NETCONF protocol that allows the NETCONF client to
+      receive common NETCONF base event notifications.
+
+      Copyright (c) 2012 IETF Trust and the persons identified as
+      the document authors.  All rights reserved.
+
+      Redistribution and use in source and binary forms, with or
+      without modification, is permitted pursuant to, and subject
+      to the license terms contained in, the Simplified BSD License
+      set forth in Section 4.c of the IETF Trust's Legal Provisions
+      Relating to IETF Documents
+      (http://trustee.ietf.org/license-info).
+
+      This version of this YANG module is part of RFC 6470; see
+      the RFC itself for full legal notices.";
+
+   revision "2012-02-06" {
+     description
+       "Initial version. Errata 3957 added.";
+     reference
+       "RFC 6470: NETCONF Base Notifications";
+   }
+
+  grouping common-session-parms {
+    description
+      "Common session parameters to identify a
+       management session.";
+
+    leaf username {
+      type string;
+      mandatory true;
+      description
+        "Name of the user for the session.";
+    }
+
+    leaf session-id {
+      type nc:session-id-or-zero-type;
+      mandatory true;
+      description
+        "Identifier of the session.
+         A NETCONF session MUST be identified by a non-zero value.
+         A non-NETCONF session MAY be identified by the value zero.";
+    }
+
+    ...
+
+    leaf timeout {
+      when
+        "../confirm-event = 'start' or ../confirm-event = 'extend'";
+      type uint32;
+      units "seconds";
+      description
+        "The configured timeout value if the event type
+         is 'start' or 'extend'.  This value represents
+         the approximate number of seconds from the event
+         time when the 'timeout' event might occur.";
+    }
+  } // notification netconf-confirmed-commit
+
+}
+'
+}
+</pre>
+
+The client sends a `get-schema` for the module:
+
+```xml
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="11">
+  <get-schema xmlns="urn:ietf:params:xml:ns:yang:ietf-netconf-monitoring">
+    <identifier>ietf-netconf-notifications</identifier>
+  </get-schema>
+</rpc>
+```
+
+The server responds with the requested schema:
+
+```xml
+<rpc-reply xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="11">
+  <data xmlns="urn:ietf:params:xml:ns:yang:ietf-netconf-monitoring">
+module ietf-netconf-notifications {
+
+   namespace
+     "urn:ietf:params:xml:ns:yang:ietf-netconf-notifications";
+
+   prefix ncn;
+
+   import ietf-inet-types { prefix inet; }
+   import ietf-netconf { prefix nc; }
+
+   organization
+     "IETF NETCONF (Network Configuration Protocol) Working Group";
+
+   contact
+     "WG Web:   &lt;http://tools.ietf.org/wg/netconf/&gt;
+      WG List:  &lt;mailto:netconf@ietf.org&gt;
+
+      WG Chair: Bert Wijnen
+                &lt;mailto:bertietf@bwijnen.net&gt;
+
+      WG Chair: Mehmet Ersue
+                &lt;mailto:mehmet.ersue@nsn.com&gt;
+
+      Editor:   Andy Bierman
+                &lt;mailto:andy@netconfcentral.org&gt;";
+
+   description
+     "This module defines a YANG data model for use with the
+      NETCONF protocol that allows the NETCONF client to
+      receive common NETCONF base event notifications.
+
+      Copyright (c) 2012 IETF Trust and the persons identified as
+      the document authors.  All rights reserved.
+
+      Redistribution and use in source and binary forms, with or
+      without modification, is permitted pursuant to, and subject
+      to the license terms contained in, the Simplified BSD License
+
+
+
+      set forth in Section 4.c of the IETF Trust's Legal Provisions
+      Relating to IETF Documents
+      (http://trustee.ietf.org/license-info).
+
+      This version of this YANG module is part of RFC 6470; see
+      the RFC itself for full legal notices.";
+
+   revision "2012-02-06" {
+     description
+       "Initial version. Errata 3957 added.";
+     reference
+       "RFC 6470: NETCONF Base Notifications";
+   }
+
+  grouping common-session-parms {
+    description
+      "Common session parameters to identify a
+       management session.";
+
+    leaf username {
+      type string;
+      mandatory true;
+     
+ description
+        "Name of the user for the session.";
+    }
+
+    leaf session-id {
+      type nc:session-id-or-zero-type;
+      mandatory true;
+      description
+        "Identifier of the session.
+         A NETCONF session MUST be identified by a non-zero value.
+         A non-NETCONF session MAY be identified by the value zero.";
+    }
+
+    ...
+
+    leaf timeout {
+      when
+        "../confirm-event = 'start' or ../confirm-event = 'extend'";
+      type uint32;
+      units "seconds";
+      description
+        "The configured timeout value if the event type
+         is 'start' or 'extend'.  This value represents
+         the approximate number of seconds from the event
+         time when the 'timeout' event might occur.";
+    }
+  } // notification netconf-confirmed-commit
+
+}
+  </data>
+</rpc-reply>
+```
+
 ## Exit from the CLI client
 
 Exit from the CLI client:
