@@ -388,6 +388,47 @@ The server responds with the requested information (output truncated):
 </rpc-reply>
 ```
 
+In the CLI client, the `show modules` command can be used to view the YANG modules that the
+server reports:
+
+<pre>
+&gt; <b>show modules</b>
+
+  ianach:iana-crypt-hash@2014-08-06
+  inet:ietf-inet-types@2013-07-15
+  nacm:ietf-netconf-acm@2018-02-14
+  ncm:ietf-netconf-monitoring@2010-10-04
+  ncn:ietf-netconf-notifications@2012-02-06
+  pl:ietf-netconf-partial-lock@2009-10-19
+  ncwd:ietf-netconf-with-defaults@2011-06-01
+  rc:ietf-restconf@2017-01-26
+  rcmon:ietf-restconf-monitoring@2017-01-26
+  yanglib:ietf-yang-library@2016-06-21
+  ypatch:ietf-yang-patch@2017-02-22
+  sx:ietf-yang-structure-ext@2020-06-17
+  yang:ietf-yang-types@2013-07-15
+  manageEvent:nc-notifications@2008-07-14
+  ncEvent:notifications@2013-03-15
+  yd:yang-data-ext@2017-07-03
+  appcmn:yuma-app-common@2017-07-25
+  ncx:yuma-ncx@2015-10-16
+  nc:yuma-netconf@2015-04-30
+  timefilter:yuma-time-filter@2012-11-15
+  yt:yuma-types@2019-11-29
+  ywapp:yumaworks-app-common@2021-08-24
+  ef:yumaworks-event-filter@2014-02-09
+  ywes:yumaworks-event-stream@2021-05-15
+  ywx:yumaworks-extensions@2021-12-14
+  ybulk:yumaworks-getbulk@2021-08-07
+  yid:yumaworks-ids@2014-07-12
+  yrc:yumaworks-restconf@2017-07-03
+  yss:yumaworks-support-save@2017-07-27
+  ysys:yumaworks-system@2022-03-08
+  ytemp:yumaworks-templates@2017-02-20
+  ytm:yumaworks-term-msg@2019-05-05
+  ywt:yumaworks-types@2021-05-15
+</pre>
+
 ## Retrieve the (empty) configuration
 
 In the CLI client, issue a `get-config` command to retrieve the running configuration:
