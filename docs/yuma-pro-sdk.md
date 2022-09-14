@@ -17,8 +17,8 @@ YumaPro SDK consists of the following components:
 
 YumaPro SDK is available in binary and in source code.
 
-There are also YumaPro SDK Basic and YumaPro SDK Basic Plus versions that offer a subset of the
-features and that you can use for free for internal use only subject to restrictions
+YumaPro SDK Basic and YumaPro SDK Basic Plus offer a subset of the
+YumaPro SDK features and can be used for free for internal use subject to restrictions
 (see the
 [license document](https://www.yumaworks.com/download/yumapro-sdk-basic-license/)
 for details):
