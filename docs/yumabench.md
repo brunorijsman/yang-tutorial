@@ -116,6 +116,14 @@ case the interfaces:
 
 ![YumaBench operational state](figures/yumabench-operational-state.png)
 
+## Notifications
+
+Click on the Notifications tab to see NETCONF notifications.
+In this example, we can see all the configuration changes that we made:
+
+![YumaBench notifications](figures/yumabench-notifications.png)
+
+
 
 
 
