@@ -81,7 +81,7 @@ These tools provide a graphical user interface that allow you to:
 
 Commercial:
 * [MG-SOFT NetConf Browser Professional Edition](docs/mg-soft-browser.md) (IN PROGRESS)
-* [YumaWorks YumaBench](docs/yumabench.md) (IN PROGRESS)
+* [YumaWorks YumaBench](docs/yumabench.md)
 
 # YANG servers
 
