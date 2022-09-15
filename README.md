@@ -17,6 +17,8 @@ A configuration attribute is an attribute that can be set by the operator, such 
 for a washing machine (hot, warm, cold).
 An operational attribute is an attribute that can only be read by the operator, such as the
 remaining time for the cycle of a washing machine.
+The YANG data model can also describe actions (e.g. start a washing cycle) and notifications
+(e.g. the washing cycle has been completed).
 
 The YANG data model is used to generate a management interface for the device.
 One example of such a management interface is the command line interface (CLI) which is a
@@ -49,6 +51,8 @@ For a list of links to standards and tutorials related to YANG, NETCONF, RESTCON
 This tutorial is written in such a way that you can follow along and run each example yourself.
 For instructions on how to go to install the necessary software see the 
 [setting up the environment for this tutorial](docs/tutorial-install.md) page.
+
+# A very simple example YANG data model: interfaces.yang
 
 Throughout this tutorial we will be using a simple example YANG data model called
 `interfaces.yang` which is described in detail in the
