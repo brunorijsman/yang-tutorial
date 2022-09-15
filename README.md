@@ -70,6 +70,8 @@ Commercial:
 * [MG-SOFT YANG Explorer Professional Edition](docs/mg-soft-explorer.md)
 * [YumaWorks YumaPro Client](docs/yuma-pro-client.md)
 
+TODO: Move some of the graphical YANG model browsers from down below to here.
+
 # NETCONF / RESTCONF servers
 
 NETCONF / RESTCONF servers are intended to implement the on-device management plane for
@@ -102,20 +104,32 @@ Commercial:
 * [MG-SOFT NETCONF Simulator](docs/mg-soft-simulator.md)
 * [YumaWorks YumaPro SDK](docs/yuma-pro-sdk.md)
 
-# Graphical YANG browsers
+# NETCONF / RESTCONF clients
 
-These tools provide a graphical user interface that allow you to:
+NETCONF / RESTCONF clients are executable tools that allow a client-side user to manage devices
+that offer a server-side NETCONF / RESTCONF interface.
+They typically provide the following functionality:
 
-1. Load a YANG data model and browse through the structure of that data model.
+* They can dynamically discover which YANG modules the device supports and download the
+  corresponding YANG data model from the device. (Or alternatively, you can manually load YANG
+  data models into the client).
 
-2. Connect to a YANG server using NETCONF or RESTCONF, browse through the contents of the data
-   store, edit the contents of the data store, and invoke YANG actions.
+* They can create, edit, and delete configuration attributes.
+
+* They can retrieve operational attributes.
+
+* They can invoke actions.
+
+* They can receive notifications.
+
+* Some tools offer a terminal-based command-line interface.
+  Other tools offer a graphical user interface (GUI).
 
 Commercial:
 * [MG-SOFT NetConf Browser Professional Edition](docs/mg-soft-browser.md) (IN PROGRESS)
 * [YumaWorks YumaBench](docs/yumabench.md)
 
-# YANG client libraries
+# NETCONF / RESTCONF client libraries
 
 These tools are libraries or modules in a particular programming language (e.g. C, C++)
 that provide NETCONF and/or RESTCONF client functionality to software developers:
