@@ -105,7 +105,7 @@ Open source:
 Commercial:
 * [Cisco Tail-f ConfD](docs/confd.md) (TODO)
 * [MG-SOFT NETCONF Simulator](docs/mg-soft-simulator.md)
-* [YumaWorks YumaPro SDK](docs/yuma-pro-sdk.md) (IN PROGRESS)
+* [YumaWorks YumaPro SDK](docs/yuma-pro-sdk.md)
 
 # YANG client libraries
 
