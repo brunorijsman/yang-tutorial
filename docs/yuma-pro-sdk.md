@@ -243,7 +243,7 @@ $ <b>yangcli-pro</b>
 
 <i>...more output...</i>
 
-&gt;
+parallels@localhost&gt;
 </pre>
 
 ## Connect the CLI client to the NETCONF server
@@ -252,7 +252,7 @@ Enter the following command in the CLI to connect to the server
 (use your Linux username and password, and put the password in quotes if it contains a question mark):
 
 <pre>
-&gt; <b>connect server=localhost user=</b><i>&lt;username&gt;</i><b> password</b>=<i>&lt;password&gt;</i></b>
+parallels@localhost&gt; <b>connect server=localhost user=</b><i>&lt;username&gt;</i><b> password</b>=<i>&lt;password&gt;</i></b>
 
 NETCONF 1.1 session established for parallels on localhost
 
@@ -392,7 +392,7 @@ In the CLI client, the `show modules` command can be used to view the YANG modul
 server reports:
 
 <pre>
-&gt; <b>show modules</b>
+parallels@localhost&gt; <b>show modules</b>
 
   ianach:iana-crypt-hash@2014-08-06
   inet:ietf-inet-types@2013-07-15
@@ -434,7 +434,7 @@ server reports:
 In the CLI client, issue a `get-config` command to retrieve the running configuration:
 
 <pre>
-&gt; <b>get-config source=running</b>
+parallels@localhost&gt; <b>get-config source=running</b>
 
 RPC Data Reply 10 for session 4 [default]: 
 
@@ -473,7 +473,7 @@ In the CLI client, issue an `sget` command to retrieve operational state for the
 whole tree):
 
 <pre>
-&gt; <b>sget /netconf-state/sessions</b>
+parallels@localhost&gt; <b>sget /netconf-state/sessions</b>
 
 Filling container /netconf-state/sessions:
 RPC Data Reply 2 for session 4 [default]: 
@@ -543,7 +543,7 @@ In the CLI client, issue the `get-schema` command to retrieve the YANG schema fo
 module from the server:
 
 <pre>
-&gt; <b>get-schema identifier=ietf-netconf-notifications</b>
+parallels@localhost&gt; <b>get-schema identifier=ietf-netconf-notifications</b>
 
 RPC Data Reply 10 for session 5 [default]: 
 
@@ -754,5 +754,256 @@ module ietf-netconf-notifications {
 Exit from the CLI client:
 
 <pre>
-&gt; <b>quit</b>
+parallels@localhost&gt; <b>quit</b>
 </pre>
+
+## Adding a plugin for your own data model
+
+We will now add a plugin for our example YANG data model: [interfaces.yang](../interfaces.yang),
+following the instructions in the
+[YumaPro Developer Manual](https://www.yumaworks.com/pub/latest/dev/yumapro-dev-manual.html)
+.
+
+If you haven't already done so, clone the `yang-tutorial` repo:
+
+<pre>
+$ <b>cd ~</b>
+$ <b>git clone https://github.com/brunorijsman/yang-tutorial.git</b>
+</pre>
+
+By default YumaPro SDK expects the YANG data models to be installed in `~/modules`.
+Copy the example YANG data model [interfaces.yang](../interfaces.yang) into `~/modules`:
+
+<pre>
+$ <b>mkdir ~/modules</b>
+$ <b>cd ~/modules</b>
+$ <b>cp ~/yang-tutorial/interfaces.yang .</b>
+</pre>
+
+YumaPro SDK support a few different flavors of plugins.
+We will use the SIL flavor, which is dynamically linked into the NETCONF server and which uses
+synchronous callbacks.
+
+We will put our plugin code in the `~/plugins` directory:
+
+<pre>
+$ <b>mkdir ~/plugins</b>
+$ <b>cd ~/plugins</b>
+</pre>
+
+Run the YumaWorks `make_sil_dir_pro` script to generate the C stub code from the YANG data model:
+
+<pre>
+$ <b>make_sil_dir_pro interfaces --sil-get2 --sil-edit2</b>
+</pre>
+
+If all goes well, this generates the following directories and files:
+
+<pre>
+$ <b>tree interfaces</b>
+interfaces/
+├── bin
+├── lib
+├── Makefile
+└── src
+    ├── Makefile
+    ├── u_interfaces.c
+    ├── u_interfaces.h
+    ├── y_interfaces.c
+    └── y_interfaces.h
+</pre>
+
+The files starting with `u_` (for user) can be edited to customize the behavior of the plugin.
+We will edit the stub C code that YumaPro SDK generated to provide values for the operational
+state attributes.
+There are many other callbacks that can be edited in the stub code, for example to do something
+when an interface is added or removed, when an IPv4 address is set, changed, or removed, etc.
+For a complete list of all the callbacks that can be customized see the
+[YumaPro Developers Manual](https://www.yumaworks.com/pub/latest/dev/yumapro-dev-manual.html#)
+.
+For now, we will keep it as simple as possible and only implement the callback for providing packet
+counter values.
+
+Edit the generated stub file `u_interfaces.c`:
+
+<pre>
+$ <b>vi ~/plugins/interfaces/src/u_interfaces.c</b>
+</pre>
+
+Edit function `u_intf_sent_packets_get`:
+
+```c
+status_t u_intf_sent_packets_get (
+    getcb_get2_t *get2cb,
+    const xmlChar *k_intf_name)
+{
+...
+}
+```
+
+Change the following lines:
+
+```c
+    /* check if the requested node exists; determined by the
+     * SIL or SIL-SA callback based on instances in the system
+     * CHANGE node_exists TO TRUE WHEN VALUE CODE FILLED IN */
+    boolean node_exists = FALSE;
+
+    if (!node_exists) {
+        return ERR_NCX_NO_INSTANCE;
+    }
+
+    obj_template_t *obj = GETCB_GET2_OBJ(get2cb);
+    status_t res = NO_ERR;
+
+    /* get the real value from the system somehow */
+    uint64 v_sent_packets = 0;
+```
+
+Into the following lines (to keep things as simple as possible, we return a random value for the
+number of sent packets counter):
+
+```c
+    /* check if the requested node exists; determined by the
+     * SIL or SIL-SA callback based on instances in the system
+     * CHANGE node_exists TO TRUE WHEN VALUE CODE FILLED IN */
+    boolean node_exists = TRUE;                          // <<< Changed this line
+
+    if (!node_exists) {
+        return ERR_NCX_NO_INSTANCE;
+    }
+
+    obj_template_t *obj = GETCB_GET2_OBJ(get2cb);
+    status_t res = NO_ERR;
+
+    /* get the real value from the system somehow */
+    uint64 v_sent_packets = rand() % 1000;               // <<< Changed this line
+```
+
+Make a similar change in the function `u_intf_received_packets_get`:
+
+```c
+    /* check if the requested node exists; determined by the
+     * SIL or SIL-SA callback based on instances in the system
+     * CHANGE node_exists TO TRUE WHEN VALUE CODE FILLED IN */
+    boolean node_exists = TRUE;
+
+    if (!node_exists) {
+        return ERR_NCX_NO_INSTANCE;
+    }
+
+    obj_template_t *obj = GETCB_GET2_OBJ(get2cb);
+    status_t res = NO_ERR;
+
+    /* get the real value from the system somehow */
+    uint64 v_received_packets = rand() % 1000;
+```
+
+Save the changes.
+
+Build and install the plugin (the `make` step generates some warnings about unused parameters
+which you can ignore for now):
+
+<pre>
+$ <b>cd interfaces</b>
+$ <b>make</b>
+$ <b>sudo make install</b>
+</pre>
+
+Go back to the CLI client which we started earlier in this tutorial and issue the following
+command to instruct the NETCONF server to load the new YANG module:
+
+<pre>
+parallels@localhost&gt; <b>load interfaces</b>
+
+RPC Data Reply 5 for session 4 [default]: 
+
+rpc-reply {
+  mod-revision 2022-03-12
+}
+</pre>
+
+We separate need to load the YANG module into the CLI client:
+
+<pre>
+parallels@localhost&gt; <b>mgrload interfaces</b>
+
+Load module 'interfaces' OK
+</pre>
+
+Note: instead of issuing CLI commands to load the YANG module into the server and the client, we
+can also start the server with a `--module` command line option:
+
+<pre>
+$ <b>netconfd-pro --log-level=debug4 --access-control=off --module=interfaces</b>
+</pre>
+
+Still in the CLI client, configure a couple of interfaces:
+
+<pre>
+parallels@localhost&gt; <b>config term</b>
+parallels@localhost# <b>interfaces</b>
+parallels@localhost(interfaces)# <b>interface eth0</b>
+parallels@localhost(interface)# <b>ipv4-address 1.1.1.1</b>
+parallels@localhost(interface)# <b>exit</b>
+parallels@localhost(interfaces)# <b>interface eth1</b>
+parallels@localhost(interface)# <b>ipv4-address 2.2.2.2</b>
+parallels@localhost(interface)# <b>exit</b>
+parallels@localhost(interfaces)# <b>exit</b>
+parallels@localhost# <b>exit</b>
+parallels@localhost> <b>commit</b>
+RPC OK Reply 7 for session 4 [default]:
+</pre>
+
+Get the configuration to double check:
+
+<pre>
+parallels@localhost&gt; <b>sget-config source=running /interfaces</b>
+
+Filling container /interfaces:
+RPC Data Reply 3 for session 5 [default]: 
+
+rpc-reply {
+  data {
+    interfaces {
+      interface  eth0 {
+        name eth0
+        ipv4-address 1.1.1.1
+      }
+      interface  eth1 {
+        name eth1
+        ipv4-address 2.2.2.2
+      }
+    }
+  }
+}
+</pre>
+
+Get the operational state for the interfaces; we get random values for the packet counters:
+
+<pre>
+parallels@localhost&gt; <b>sget /interfaces</b>
+
+Filling container /interfaces:
+RPC Data Reply 29 for session 3 [default]: 
+
+rpc-reply {
+  data {
+    interfaces {
+      interface  eth0 {
+        name eth0
+        ipv4-address 1.1.1.1
+        sent-packets 383
+        received-packets 886
+      }
+      interface  eth1 {
+        name eth1
+        ipv4-address 2.2.2.2
+        sent-packets 777
+        received-packets 915
+      }
+    }
+  }
+}
+</pre>
+
