@@ -70,6 +70,38 @@ Commercial:
 * [MG-SOFT YANG Explorer Professional Edition](docs/mg-soft-explorer.md)
 * [YumaWorks YumaPro Client](docs/yuma-pro-client.md)
 
+# NETCONF / RESTCONF servers
+
+NETCONF / RESTCONF servers are intended to implement the on-device management plane for
+hardware devices. They typically provide the following functionality:
+
+* They provide a north-bound (server-side) NETCONF and RESTCONF interface for clients.
+
+* They often also provide other north-bound (server-side) interface such as gNMI, SNMP, and/or
+  a command-line interface (CLI).
+
+* They provide a software development kit (SDK) that allows the developers of the software on the
+  device to map abstract YANG operations to concrete operations on the device hardware.
+  Typically, the developers implement callback functions that get called when a configuration
+  attribute needs to be validated, when a configuration attribute is set to a different value, when
+  an operational attribute value is retrieved, when a transaction is committed, when an action is
+  executed, when a notification needs to be generated, etc. etc. Different implementations support
+  different programming languages.
+
+* They provide the backend implementation for the YANG data models that manage the NETCONF /
+  RESTCONF server functionality itself, e.g. 
+  [RFC8525: YANG library](https://datatracker.ietf.org/doc/rfc8525/).
+
+Open source:
+* [Clixon](docs/clixon.md) (IN PROGRESS)
+* [Netopeer2](docs/netopeer2.md) (IN PROGRESS)
+* [Sysrepo](https://github.com/sysrepo/sysrepo) (TODO)
+
+Commercial:
+* [Cisco Tail-f ConfD](docs/confd.md) (TODO)
+* [MG-SOFT NETCONF Simulator](docs/mg-soft-simulator.md)
+* [YumaWorks YumaPro SDK](docs/yuma-pro-sdk.md)
+
 # Graphical YANG browsers
 
 These tools provide a graphical user interface that allow you to:
@@ -82,30 +114,6 @@ These tools provide a graphical user interface that allow you to:
 Commercial:
 * [MG-SOFT NetConf Browser Professional Edition](docs/mg-soft-browser.md) (IN PROGRESS)
 * [YumaWorks YumaBench](docs/yumabench.md)
-
-# YANG servers
-
-A YANG server (also known as a YANG backend server or a NETCONF server or a RESTCONF server):
-
-* Implements the data store that stores data according to the data model described by YANG
-  data models.
-
-* Provides one or more of the following north-bound interfaces to access the data store:
-  * NETCONF
-  * RESTCONF
-  * gNMI
-  * Command line interface (CLI)
-  * SNMP
-
-Open source:
-* [Clixon](docs/clixon.md) (IN PROGRESS)
-* [Netopeer2](docs/netopeer2.md) (IN PROGRESS)
-* [Sysrepo](https://github.com/sysrepo/sysrepo) (TODO)
-
-Commercial:
-* [Cisco Tail-f ConfD](docs/confd.md) (TODO)
-* [MG-SOFT NETCONF Simulator](docs/mg-soft-simulator.md)
-* [YumaWorks YumaPro SDK](docs/yuma-pro-sdk.md)
 
 # YANG client libraries
 
