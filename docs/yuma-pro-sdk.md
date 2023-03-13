@@ -1,7 +1,5 @@
 # YumaPro SDK from YumaWorks
 
-Hello
-
 ## Introduction
 
 [YumaWorks](https://www.yumaworks.com/) is a company that offers a suite of network management
