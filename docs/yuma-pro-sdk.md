@@ -38,8 +38,8 @@ It is available for several Linux distributions; we use Ubuntu 20.04.
 Note: we had to use FireFox for the download; when using Chrome the checkbox to agree with the
 license agreement does not appear when you scroll down to the bottom of the agreement.
 
-As of 8 September 2022, this downloads files 
-`yumapro-sdk-basic-21.10-8.u2004.amd64.deb` (the software) and
+As of 13 March 2023, this downloads files 
+`yumapro-sdk-basic-21.10-12.u2204.amd64.deb` (the software) and
 `yumapro-doc_21.10-8_all.deb` (the documentation).
 
 ## Install the software and documentation
@@ -106,7 +106,7 @@ $ <b>sudo apt-get install -y zlib1g-dev</b>
 Install the YumaPro SDK Basic software package:
 
 <pre>
-$ <b>sudo dpkg -i ~/Downloads/yumapro-sdk-basic-21.10-8.u2004.amd64.deb</b>
+$ <b>sudo dpkg -i ~/Downloads/yumapro-sdk-basic-21.10-12.u2204.amd64.deb</b>
 </pre>
 
 Verify that YumaPro SDK Basic has been installed:
