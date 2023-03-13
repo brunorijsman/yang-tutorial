@@ -40,7 +40,7 @@ license agreement does not appear when you scroll down to the bottom of the agre
 
 As of 13 March 2023, this downloads files 
 `yumapro-sdk-basic-21.10-12.u2204.amd64.deb` (the software) and
-`yumapro-doc_21.10-8_all.deb` (the documentation).
+`yumapro-doc_21.10-12_all.deb` (the documentation).
 
 ## Install the software and documentation
 
@@ -118,7 +118,7 @@ Starting netconfd-pro...
 Copyright (c) 2008-2012, Andy Bierman, All Rights Reserved.
 Copyright (c) 2012-2022, YumaWorks, Inc., All Rights Reserved.
 
-netconfd-pro version 21.10-8-1fcb
+netconfd-pro version 21.10-12-1fcb
 </pre>
 
 Install the YumaPro SDK Basic documentation package
@@ -126,7 +126,7 @@ Install the YumaPro SDK Basic documentation package
 documentation files with the same file names):
 
 <pre>
-$ <b>sudo dpkg -i --force-overwrite ~/Downloads/yumapro-doc_21.10-8_all.deb</b>
+$ <b>sudo dpkg -i --force-overwrite ~/Downloads/yumapro-doc_21.10-12_all.deb</b>
 </pre>
 
 Configure SSH:
@@ -167,7 +167,7 @@ $ <b>sudo apt-get install -y multitail</b>
 Monitor both files at the same time using different colors:
 
 <pre>
-$ <b></b>
+$ <b>multitail -ci magenta /tmp/netconf-rx.txt -ci green /tmp/netconf-tx.txt</b>
 </pre>
 
 Press `F1` to get help on the interactive keys that multitail supports. Some handy keys are `B` to
@@ -221,7 +221,7 @@ Copyright (c) 2012-2022, YumaWorks, Inc., All Rights Reserved.
 
 netconfd-pro init OK, ready for sessions
 
-Running netconfd-pro server (21.10-8-1fcb)
+Running netconfd-pro server (21.10-12-1fcb)
 
 Binding to AF_LOCAL socket /tmp/ncxserver.sock
 
@@ -235,7 +235,7 @@ In a separate Terminal window, start the `yangcli-pro` client:
 <pre>
 $ <b>yangcli-pro</b>
   
-  yangcli-pro version 21.10-8
+  yangcli-pro version 21.10-12
   libssh2 version 1.8.0
 
   Copyright (c) 2008-2012, Andy Bierman, All Rights Reserved.
