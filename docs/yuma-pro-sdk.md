@@ -155,6 +155,8 @@ as Wireshark because they cannot easily decode the encrypted SSH session):
 Subsystem netconf "/bin/sh -c 'tee /tmp/netconf-rx.txt | /usr/sbin/netconf-subsystem-pro` | tee /tmp/netconf-tx.txt'"
 </pre>
 
+TODO: The above does not seem to work
+
 The NETCONF server will write all received XML messages to file `/tmp/netconf-rx.txt` and all
 sent XML messages to file `/tmp/netconf-tx.txt`.
 
