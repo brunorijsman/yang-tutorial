@@ -29,87 +29,50 @@ for details):
 
 In this tutorial we will be using the basic version.
 
-## Download the YumaWorks software and documentation
+## Documentation
+
+The YumaPro SDK documentation is [online here](https://docs.yumaworks.com/en/latest/).
+
+## Installation
+
+The installation steps described below are based on the YumaWorks
+[installation guide](https://www.yumaworks.com/pub/latest/install/yumapro-installation-guide.html)
+but deviate in some small details.
+
+### Install the dependencies
+
+Install the dependencies:
+
+<pre>
+sudo apt-get update
+sudo apt-get install -y libxml2-dev
+sudo apt-get install -y openssh-server
+sudo apt-get install -y openssl
+sudo apt-get install -y libssl-dev
+sudo apt-get install -y libcurl4-gnutls-dev
+sudo apt-get install -y libfcgi-dev
+sudo apt-get install -y libssh2-1-dev
+sudo apt-get install -y libncurses5-dev
+sudo apt-get install -y zlib1g-dev
+</pre>
+
+### Download YumaPro SDK
 
 Download the YumaPro SDK Basic software and documentation from the
 [download page](https://www.yumaworks.com/support/download-yumapro-sdk-basic/)
-It is available for several Linux distributions; we use Ubuntu 20.04.
+It is available for several Linux distributions; we use Ubuntu 22.04 LTS.
 
-Note: we had to use FireFox for the download; when using Chrome the checkbox to agree with the
-license agreement does not appear when you scroll down to the bottom of the agreement.
+As of 28 June 2023, this downloads file `yumapro-sdk-basic-21.10-12.u2204.amd64.deb`.
 
-As of 13 March 2023, this downloads files 
-`yumapro-sdk-basic-21.10-12.u2204.amd64.deb` (the software) and
-`yumapro-doc_21.10-12_all.deb` (the documentation).
-
-## Install the software and documentation
-
-Follow the instructions on the
-[installation guide](https://www.yumaworks.com/pub/latest/install/yumapro-installation-guide.html)
-page.
-
-Update `apt-get` (the instructions don't mention this, but always a prudent first step):
-
-<pre>
-$ <b>sudo apt-get update</b>
-</pre>
-
-Install `libxml2`:
-
-<pre>
-$ <b>sudo apt-get install -y libxml2-dev</b>
-</pre>
-
-Install `openssh-server`:
-
-<pre>
-$ <b>sudo apt-get install -y openssh-server</b>
-</pre>
-
-Install `openssl` and `libssl-dev` (the instructions ask to install `openssl-dev` but that does
-not work on Ubuntu):
-
-<pre>
-$ <b>sudo apt-get install -y openssl libssl-dev</b>
-</pre>
-
-Install `libcurl4-gnutls-dev`:
-
-<pre>
-$ <b>sudo apt-get install -y libcurl4-gnutls-dev</b>
-</pre>
-
-Install `libfcgi-dev`:
-
-<pre>
-$ <b>sudo apt-get install -y libfcgi-dev</b>
-</pre>
-
-Install `libssh2-1-dev`:
-
-<pre>
-$ <b>sudo apt-get install -y libssh2-1-dev</b>
-</pre>
-
-Install `libncurses5-dev`:
-
-<pre>
-$ <b>sudo apt-get install -y libncurses5-dev</b>
-</pre>
-
-Install `zlib1g-dev`:
-
-<pre>
-$ <b>sudo apt-get install -y zlib1g-dev</b>
-</pre>
+### Install YumaPro SDK
 
 Install the YumaPro SDK Basic software package:
 
 <pre>
-$ <b>sudo dpkg -i ~/Downloads/yumapro-sdk-basic-21.10-12.u2204.amd64.deb</b>
+sudo dpkg -i yumapro-sdk-basic-21.10-12.u2204.amd64.deb
 </pre>
 
-Verify that YumaPro SDK Basic has been installed:
+Verify that YumaPro SDK has been installed:
 
 <pre>
 $ <b>/usr/sbin/netconfd-pro --version</b>
@@ -121,20 +84,12 @@ Copyright (c) 2012-2022, YumaWorks, Inc., All Rights Reserved.
 netconfd-pro version 21.10-12-1fcb
 </pre>
 
-Install the YumaPro SDK Basic documentation package
-(note the `--force-overwrite` option is needed because the software package installed some
-documentation files with the same file names):
-
-<pre>
-$ <b>sudo dpkg -i --force-overwrite ~/Downloads/yumapro-doc_21.10-12_all.deb</b>
-</pre>
-
-Configure SSH:
+### Configure SSH
 
 Edit sshd_config, for example using `vi`:
 
 <pre>
-$ <b>sudo vi /etc/ssh/sshd_config</b>
+sudo vi /etc/ssh/sshd_config
 </pre>
 
 The installation guide instructs you to add the following lines:
@@ -150,10 +105,8 @@ are exchanged over the SSH system (this cannot easily be done with normal packet
 as Wireshark because they cannot easily decode the encrypted SSH session):
 
 <pre>
-Subsystem netconf "/bin/sh -c 'tee /tmp/netconf-rx.txt | /usr/sbin/netconf-subsystem-pro` | tee /tmp/netconf-tx.txt'"
+Subsystem netconf "/bin/sh -c 'tee /tmp/netconf-rx.txt | /usr/sbin/netconf-subsystem-pro | tee /tmp/netconf-tx.txt'"
 </pre>
-
-TODO: The above does not seem to work
 
 The NETCONF server will write all received XML messages to file `/tmp/netconf-rx.txt` and all
 sent XML messages to file `/tmp/netconf-tx.txt`.
@@ -163,51 +116,70 @@ The `multitail` program is handy to monitor both files at the same time.
 Install `multitail`:
 
 <pre>
-$ <b>sudo apt-get install -y multitail</b>
+sudo apt-get install -y multitail
 </pre>
 
 Monitor both files at the same time using different colors:
 
 <pre>
-$ <b>multitail -ci magenta /tmp/netconf-rx.txt -ci green /tmp/netconf-tx.txt</b>
+multitail -ci magenta /tmp/netconf-rx.txt -ci green /tmp/netconf-tx.txt
 </pre>
 
 Press `F1` to get help on the interactive keys that multitail supports. Some handy keys are `B` to
 scroll back and `N` to clear the window.
 
-Generate SSH keys (accept defaults for all prompts):
+### Configure SSH
+
+TODO: Are we actually using a key? It seems that we are using username/password below.
+
+Use `ssh-keygen` to generate a public-private key pair (accept defaults for all prompts):
 
 <pre>
-$ <b>ssh-keygen</b>
-Generating public/private rsa key pair.
-Enter file in which to save the key (/home/parallels/.ssh/id_rsa): 
-Enter passphrase (empty for no passphrase): 
-Enter same passphrase again: 
-Your identification has been saved in /home/parallels/.ssh/id_rsa
-Your public key has been saved in /home/parallels/.ssh/id_rsa.pub
+$ <b>ssh-keygen -t ed25519</b>
+Generating public/private ed25519 key pair.
+Enter file in which to save the key (/home/ubuntu/.ssh/id_ed25519):
+Enter passphrase (empty for no passphrase):
+Enter same passphrase again:
+Your identification has been saved in /home/ubuntu/.ssh/id_ed25519
+Your public key has been saved in /home/ubuntu/.ssh/id_ed25519.pub
 The key fingerprint is:
-SHA256:AmezkogmPbMOZhxTcrf00DTydqxv0MyC4j7qTL4NRJA parallels@parallels-Parallels-Virtual-Platform
+SHA256:e59bSBR6oP/pO+NjJwauL9S1cXQ+8pLa6vPLvLGsoD8 ubuntu@ip-172-31-28-171
 The key's randomart image is:
-+---[RSA 3072]----+
-|..   . o         |
-|E     = o        |
-| o o.+++ o       |
-|.o+.o=*o*        |
-|o==.ooo=S+       |
-|= ++.. .+        |
-|.*..     o       |
-|*o+.    .        |
-|.*+o.            |
++--[ED25519 256]--+
+|          . .    |
+|         . o .. .|
+|        . . o. o |
+|         . oo....|
+|        S....++ .|
+|        ..oo.= . |
+|       ..o..*.o  |
+|        oEo=@++  |
+|       .o=+B%^o  |
 +----[SHA256]-----+
 </pre>
 
-Restart SSH:
+Restart SSH to make the keys take effect:
 
 <pre>
-$ <b>sudo service ssh restart</b>
+sudo service ssh restart
 </pre>
 
-## Start the server
+## Set a password
+
+For this demo, we will be using username and password authentication.
+
+If you are using an AWS Ubuntu instance, user `ubuntu` does not have a password by default.
+Set a password as follows:
+
+<pre>
+$ <b>sudo su -</b>
+$ <b>passwd ubuntu</b>
+New password: <b>topsecret</b>
+Retype new password: <b>topsecret</b>
+passwd: password updated successfully
+</pre>
+
+## Start the NETCONF server
 
 Start the `netconfd-pro` server (with maximum debug logging; use `debug` instead of `debug4` to
 reduce the verbosity):
@@ -236,7 +208,7 @@ In a separate Terminal window, start the `yangcli-pro` client:
 
 <pre>
 $ <b>yangcli-pro</b>
-  
+
   yangcli-pro version 21.10-12
   libssh2 version 1.8.0
 
@@ -271,6 +243,11 @@ Additional with-defaults behavior: trim,report-all,report-all-tagged
 YANG library set to: 1.0 (RFC 7895)
 module-set-id: 4269
 </pre>
+
+## View the NETCONF messages
+
+In the `multitail` window that we had started in an earlier step, we can see the NETCONF messages
+that are being exchanged between the NETCONF client and server.
 
 The client sends a `hello`:
 
@@ -390,6 +367,8 @@ The server responds with the requested information (output truncated):
 </rpc-reply>
 ```
 
+## Issue a command in the CLI client
+
 In the CLI client, the `show modules` command can be used to view the YANG modules that the
 server reports:
 
@@ -438,7 +417,7 @@ In the CLI client, issue a `get-config` command to retrieve the running configur
 <pre>
 parallels@localhost&gt; <b>get-config source=running</b>
 
-RPC Data Reply 10 for session 4 [default]: 
+RPC Data Reply 10 for session 4 [default]:
 
 rpc-reply {
   data {
@@ -470,15 +449,15 @@ The server responds with the requested configuration:
 
 ## Retrieve a subtree of the operational state
 
-In the CLI client, issue an `sget` command to retrieve operational state for the 
-`/netconf-state/sessions` subtree of the operational state tree (use `/` if you want to see the 
+In the CLI client, issue an `sget` command to retrieve operational state for the
+`/netconf-state/sessions` subtree of the operational state tree (use `/` if you want to see the
 whole tree):
 
 <pre>
 parallels@localhost&gt; <b>sget /netconf-state/sessions</b>
 
 Filling container /netconf-state/sessions:
-RPC Data Reply 2 for session 4 [default]: 
+RPC Data Reply 2 for session 4 [default]:
 
 rpc-reply {
   data {
@@ -547,7 +526,7 @@ module from the server:
 <pre>
 parallels@localhost&gt; <b>get-schema identifier=ietf-netconf-notifications</b>
 
-RPC Data Reply 10 for session 5 [default]: 
+RPC Data Reply 10 for session 5 [default]:
 
 rpc-reply {
   data '
@@ -717,7 +696,7 @@ module ietf-netconf-notifications {
     leaf username {
       type string;
       mandatory true;
-     
+
  description
         "Name of the user for the session.";
     }
@@ -918,7 +897,7 @@ command to instruct the NETCONF server to load the new YANG module:
 <pre>
 parallels@localhost&gt; <b>load interfaces</b>
 
-RPC Data Reply 5 for session 4 [default]: 
+RPC Data Reply 5 for session 4 [default]:
 
 rpc-reply {
   mod-revision 2022-03-12
@@ -963,7 +942,7 @@ Get the configuration to double check:
 parallels@localhost&gt; <b>sget-config source=running /interfaces</b>
 
 Filling container /interfaces:
-RPC Data Reply 3 for session 5 [default]: 
+RPC Data Reply 3 for session 5 [default]:
 
 rpc-reply {
   data {
@@ -987,7 +966,7 @@ Get the operational state for the interfaces; we get random values for the packe
 parallels@localhost&gt; <b>sget /interfaces</b>
 
 Filling container /interfaces:
-RPC Data Reply 29 for session 3 [default]: 
+RPC Data Reply 29 for session 3 [default]:
 
 rpc-reply {
   data {

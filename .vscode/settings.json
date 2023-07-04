@@ -10,7 +10,7 @@
   "editor.rulers": [
     100
   ],
-  "window.zoomLevel": 0,
+  "window.zoomLevel": 1,
   "cSpell.words": [
     "appcmn",
     "Bierman",
@@ -43,6 +43,7 @@
     "rpcs",
     "sget",
     "timefilter",
+    "topsecret",
     "Wijnen",
     "Wireshark",
     "yangcli",
